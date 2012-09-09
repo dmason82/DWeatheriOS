@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DWeatherViewController : UIViewController
+@interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)NSArray *weatherDays;
 
 @end

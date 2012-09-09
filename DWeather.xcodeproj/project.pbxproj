@@ -20,6 +20,8 @@
 		A81C1A6E15FBDC1E00CBA4B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81C1A4F15FBDC1E00CBA4B6 /* Foundation.framework */; };
 		A81C1A7615FBDC1E00CBA4B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A81C1A7415FBDC1E00CBA4B6 /* InfoPlist.strings */; };
 		A81C1A7915FBDC1F00CBA4B6 /* DWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A81C1A7815FBDC1F00CBA4B6 /* DWeatherTests.m */; };
+		A81C1A8415FBDC3C00CBA4B6 /* DWeatherWUEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A81C1A8315FBDC3C00CBA4B6 /* DWeatherWUEngine.m */; };
+		A81C1A8715FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m in Sources */ = {isa = PBXBuildFile; fileRef = A81C1A8615FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		A81C1A7515FBDC1E00CBA4B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A81C1A7715FBDC1E00CBA4B6 /* DWeatherTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DWeatherTests.h; sourceTree = "<group>"; };
 		A81C1A7815FBDC1F00CBA4B6 /* DWeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DWeatherTests.m; sourceTree = "<group>"; };
+		A81C1A8215FBDC3C00CBA4B6 /* DWeatherWUEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherWUEngine.h; sourceTree = "<group>"; };
+		A81C1A8315FBDC3C00CBA4B6 /* DWeatherWUEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherWUEngine.m; sourceTree = "<group>"; };
+		A81C1A8515FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherWeatherForecastDay.h; sourceTree = "<group>"; };
+		A81C1A8615FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherWeatherForecastDay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 				A81C1A6215FBDC1E00CBA4B6 /* DWeatherViewController.h */,
 				A81C1A6315FBDC1E00CBA4B6 /* DWeatherViewController.m */,
 				A81C1A5415FBDC1E00CBA4B6 /* Supporting Files */,
+				A81C1A8215FBDC3C00CBA4B6 /* DWeatherWUEngine.h */,
+				A81C1A8315FBDC3C00CBA4B6 /* DWeatherWUEngine.m */,
+				A81C1A8515FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.h */,
+				A81C1A8615FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m */,
 			);
 			path = DWeather;
 			sourceTree = "<group>";
@@ -262,6 +272,8 @@
 				A81C1A5A15FBDC1E00CBA4B6 /* main.m in Sources */,
 				A81C1A5E15FBDC1E00CBA4B6 /* DWeatherAppDelegate.m in Sources */,
 				A81C1A6415FBDC1E00CBA4B6 /* DWeatherViewController.m in Sources */,
+				A81C1A8415FBDC3C00CBA4B6 /* DWeatherWUEngine.m in Sources */,
+				A81C1A8715FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
