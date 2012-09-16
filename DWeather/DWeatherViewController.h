@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class DWeatherWUEngine;
-@interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property(nonatomic,weak)NSArray *weatherDays;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UITableView *weatherConditionsTable;
@@ -16,6 +16,6 @@
 @property(strong,nonatomic)NSArray* forecastWeather;
 @property(nonatomic,strong)DWeatherWUEngine *engine;
 @property(nonatomic,weak)IBOutlet UITextField *locationTextField;
--(IBAction)fetchWeather:(UIButton*)sender;
+-(IBAction)fetchWeather;
 
 @end

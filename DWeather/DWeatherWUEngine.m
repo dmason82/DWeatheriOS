@@ -30,55 +30,42 @@
 
     NSDictionary *JSONResponse = [self obtainJSONForURL:weatherRequestCurrentString];
     NSDictionary *currentObservations = [JSONResponse objectForKey:@"current_observation"];
-    NSDictionary *currentLocation = [JSONResponse objectForKey:@"observation_location"];
-    NSLog(@"%@",JSONResponse);
+    NSDictionary *currentLocation = [currentObservations objectForKey:@"display_location"];
     DWeatherCurrentConditions* current = [[DWeatherCurrentConditions alloc] init];
     current.dateString = [[currentObservations objectForKey:@"local_time_rfc822"] substringToIndex:3];
     current.currentTemperature = [currentObservations objectForKey:@"temp_f"];
     current.iconPath = [currentObservations objectForKey:@"icon_url"];
     current.cityString = [currentLocation objectForKey:@"full"];
-    current.windString = [currentObservations objectForKey:@"wind_string"];
+    current.windString = [NSString stringWithFormat:@"%@ MPH %@",[currentObservations objectForKey:@"wind_mph"],[currentObservations objectForKey:@"wind_dir"]];
     current.humidityString = [currentObservations objectForKey:@"relative_humidity"];
     current.conditionsString = [NSString stringWithFormat:@"%@",[[currentObservations objectForKey:@"weather"] description]];
     [array addObject:current];
     return array;
 }
 /**
- JSONArray forecastArray = forecastObject.getJSONObject("txt_forecast").getJSONArray("forecastday");
- JSONArray simpleForecastArray = forecastObject.getJSONObject("simpleforecast").getJSONArray("forecastday");
- 
- ForecastWeather newForecast = new ForecastWeather();
- JSONObject currentSimpleForecastObject = simpleForecastArray.getJSONObject(i);
- JSONObject currentForecastDateObject = currentSimpleForecastObject.getJSONObject("date");
- newForecast.setIconPath(currentSimpleForecastObject.getString("icon_url"));
- newForecast.setCondition(currentSimpleForecastObject.getString("conditions"));
- newForecast.setDay(Integer.toString(currentForecastDateObject.getInt("month"))+"/"+Integer.toString(currentForecastDateObject.getInt("day"))+"/"+Integer.toString(currentForecastDateObject.getInt("year")) );
- newForecast.setHighTemp(Float.parseFloat(currentSimpleForecastObject.getJSONObject("high").getString("fahrenheit")));
- newForecast.setLowTemp(Float.parseFloat(currentSimpleForecastObject.getJSONObject("low").getString("fahrenheit")));
- newForecast.setDayOfWeek(currentForecastDateObject.getString("weekday_short"));
- forecastArrayList.add(newForecast);
  */
 -(NSArray *)obtainForecastConditions:(NSString*)weatherLocation
 {
-    
-    
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
      NSString* locationRequestString = [weatherLocation stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSString* weatherForecastRequestString = [@"http://api.wunderground.com/api/" stringByAppendingFormat:@"%@/forecast/q/%@.json",_API_KEY,locationRequestString];
     
-    NSDictionary *JSONResponse = [self obtainJSONForURL:weatherForecastRequestString];
+    NSDictionary *JSONResponse = [[self obtainJSONForURL:weatherForecastRequestString] objectForKey:@"forecast"];
+    NSLog(@"%@",JSONResponse);
     NSArray *forecastTxtArray = [[JSONResponse objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];
     NSArray* forecastSimpleArray = [[JSONResponse objectForKey:@"simpleforecast"] objectForKey:@"forecastday"];
-//    NSLog(@"%@",JSONResponse);
-    for (int i = 0; i < [forecastTxtArray count] ;i++) {
+    
+    for (int i = 0; i < [forecastSimpleArray count] ;i++) {
         NSDictionary * forecastConditions = [forecastTxtArray objectAtIndex:i];
         NSDictionary * forecastSimpleConditions = [forecastSimpleArray objectAtIndex:i];
         DWeatherWeatherForecastDay *newDay = [[DWeatherWeatherForecastDay alloc] init];
         newDay.forecastDay = [@"" stringByAppendingFormat:@"%@/%@/%@",[forecastConditions objectForKey:@"month"],[forecastConditions objectForKey:@"day"],[forecastConditions objectForKey:@"year"]];
-        newDay.forecastCondition = [forecastSimpleConditions objectForKey:@"conditions"];
+        newDay.forecastIconPath = [forecastSimpleConditions objectForKey:@"icon_url"];
+        newDay.forecastCondition = [[forecastSimpleConditions objectForKey:@"conditions"] description];
         newDay.highTemp = [[forecastSimpleConditions objectForKey:@"high"] objectForKey:@"fahrenheit"];
+        NSLog(@"%@",newDay.highTemp);
         newDay.lowTemp = [[forecastSimpleConditions objectForKey:@"low"] objectForKey:@"fahrenheit"];
-        newDay.dayOfWeek = [forecastConditions objectForKey:@"weekday_short"];
+        newDay.dayOfWeek = [[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"weekday_short"] ;
         [returnArray addObject:newDay];
     }
     return returnArray;
