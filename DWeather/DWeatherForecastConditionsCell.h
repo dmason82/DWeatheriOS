@@ -1,15 +1,10 @@
 //
-//  DWeatherWeatherForecastDay.h
+//  DWeatherForecastConditionsCell.h
 //  DWeather
 //
-//  Created by Doug Mason on 9/8/12.
+//  Created by Doug Mason on 9/15/12.
 //  Copyright (c) 2012 Doug Mason. All rights reserved.
 //
-/*
- private float lowTemp,highTemp;
- private String day,icon,condition;
- */
-
 /*
  JSONObject currentForecastDateObject = currentSimpleForecastObject.getJSONObject("date");
  newForecast.setIconPath(currentSimpleForecastObject.getString("icon_url"));
@@ -19,16 +14,12 @@
  newForecast.setLowTemp(Float.parseFloat(currentSimpleForecastObject.getJSONObject("low").getString("fahrenheit")));
  newForecast.setDayOfWeek(currentForecastDateObject.getString("weekday_short"));
  */
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface DWeatherWeatherForecastDay : NSObject
-@property(nonatomic,strong)NSNumber *lowTemp;
-@property(nonatomic,strong)NSNumber *highTemp;
-@property(nonatomic,strong)NSNumber *currentTemp;
-@property(nonatomic,strong)NSString *dayOfWeek;
-@property(nonatomic,strong)NSString *forecastDay;
-@property(nonatomic,strong)NSString *forecastIconPath;
-@property(nonatomic,strong)NSString *forecastCondition;
-@property(nonatomic,strong)NSString *forecastWindText;
-@property(nonatomic,strong)NSString *currentLocation;
+@interface DWeatherForecastConditionsCell : UITableViewCell
+@property(nonatomic,weak)IBOutlet UILabel *highTempLabel;
+@property(nonatomic,weak)IBOutlet UILabel *lowTempLabel;
+@property(nonatomic,weak)IBOutlet UIImageView *forecastIcon;
+@property(nonatomic,weak)IBOutlet UILabel *conditionLabel;
+@property(nonatomic,weak)IBOutlet UILabel *dayOfWeekLabel;
 @end

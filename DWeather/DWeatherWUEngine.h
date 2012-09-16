@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface DWeatherWUEngine : NSObject <NSURLConnectionDelegate>
-+(NSArray*)obtainWeather:(NSString*)weatherLocation;
+
+@property (strong)NSMutableData* JSONData;
+@property(strong) NSString* API_KEY;
+-(NSArray*)obtainCurrentConditions:(NSString *)weatherLocation;
+-(NSArray *)obtainForecastConditions:(NSString*)weatherLocation;
+-(id)obtainJSONForURL:(NSString*) URL;
 
 @end
