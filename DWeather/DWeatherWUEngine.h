@@ -12,6 +12,7 @@
 
 @property (strong)NSMutableData* JSONData;
 @property(strong) NSString* API_KEY;
+@property(nonatomic)BOOL isAutocomplete;
 -(NSArray*)obtainCurrentConditions:(NSString *)weatherLocation;
 -(NSArray *)obtainForecastConditions:(NSString*)weatherLocation;
 -(id)obtainJSONForURL:(NSString*) URL;

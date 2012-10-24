@@ -28,7 +28,13 @@
     NSString* locationRequestString = [weatherLocation stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
    NSString* weatherRequestCurrentString = [@"http://api.wunderground.com/api/" stringByAppendingFormat:@"%@/conditions/q/%@.json",_API_KEY,locationRequestString];
 
+    NSArray *JSONAutoComplete = [[self obtainJSONForURL:weatherRequestCurrentString] objectForKey:@"response"];
+    if([JSONAutoComplete count] > 0){
+        _isAutocomplete = YES;
+        return JSONAutoComplete;
+    }
     NSDictionary *JSONResponse = [self obtainJSONForURL:weatherRequestCurrentString];
+    NSLog(@"%@", JSONResponse);
     NSDictionary *currentObservations = [JSONResponse objectForKey:@"current_observation"];
     NSDictionary *currentLocation = [currentObservations objectForKey:@"display_location"];
     DWeatherCurrentConditions* current = [[DWeatherCurrentConditions alloc] init];
@@ -40,6 +46,7 @@
     current.humidityString = [currentObservations objectForKey:@"relative_humidity"];
     current.conditionsString = [NSString stringWithFormat:@"%@",[[currentObservations objectForKey:@"weather"] description]];
     [array addObject:current];
+    _isAutocomplete = false;
     return array;
 }
 /**
@@ -49,7 +56,6 @@
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
      NSString* locationRequestString = [weatherLocation stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSString* weatherForecastRequestString = [@"http://api.wunderground.com/api/" stringByAppendingFormat:@"%@/forecast/q/%@.json",_API_KEY,locationRequestString];
-    
     NSDictionary *JSONResponse = [[self obtainJSONForURL:weatherForecastRequestString] objectForKey:@"forecast"];
     NSLog(@"%@",JSONResponse);
     NSArray *forecastTxtArray = [[JSONResponse objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];

@@ -13,7 +13,7 @@
 #import "DWeatherCurrentWeatherCell.h"
 #import "DWeatherForecastConditionsCell.h"
 @interface DWeatherViewController ()
-
+@property(nonatomic,retain)NSArray *autoComplete;
 @end
 
 @implementation DWeatherViewController
@@ -42,11 +42,30 @@
  */
 -(IBAction)fetchWeather
 {
-    [self.locationLabel resignFirstResponder];
+    [self.locationTextField resignFirstResponder];
     self.currentWeather = [self.engine obtainCurrentConditions:self.locationTextField.text];
-    self.forecastWeather = [self.engine obtainForecastConditions:self.locationTextField.text];
-    self.locationLabel.text = [@"Weather for:" stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[_currentWeather objectAtIndex:0]).cityString];
-    [_weatherConditionsTable reloadData];
+    /**Case in which WUnderground Autocomplete API is instantiated.
+     We will bring up a UI Actionsheet 
+     */
+    if(self.engine.isAutocomplete){
+        NSLog(@"%@",self.currentWeather);
+        UIActionSheet *autoCompleteSheet = [[UIActionSheet alloc] initWithTitle:@"Please select a City:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"OK", nil];
+        UIPickerView *cityPicker = [[UIPickerView alloc] init];
+        _autoComplete = [(NSDictionary*)_currentWeather objectForKey:@"results"];
+        NSLog(@"%@",_autoComplete);
+        cityPicker.delegate=self;
+        cityPicker.dataSource=self;
+        [autoCompleteSheet addSubview:cityPicker];
+        [autoCompleteSheet showFromRect:CGRectMake(0, 0, self.view.frame.size.width , self.view.frame.size.height/2) inView:self.view animated:YES];
+        
+        
+    }else{
+        self.forecastWeather = [self.engine obtainForecastConditions:self.locationTextField.text];
+        self.locationLabel.text = [@"Weather for:" stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[_currentWeather objectAtIndex:0]).cityString];
+        [_weatherConditionsTable reloadData];
+        
+    }
+
 }
 
 /**We have 2 sections, current conditions and weather forecast.
@@ -111,6 +130,8 @@
     }
 }
 
+
+
 #pragma mark -UITextFieldDelegate Methods
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
@@ -121,5 +142,33 @@
     [textField resignFirstResponder];
     [self fetchWeather];
     return YES;
+}
+
+
+
+#pragma mark - UIPickerViewDatasource methods
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    if (component == 0) {
+        return [_autoComplete count];
+    }
+    else{
+        return 1;
+    }
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component{
+//    return [[[_autoComplete objectAtIndex:row] objectForKey:@"City"] stringByAppendingFormat:@",%@",[[_autoComplete objectAtIndex:row] objectForKey:@"State"] ];
+//    return [self.currentWeather ];
+    NSString* returnString = @"";
+    return [returnString stringByAppendingFormat:@"%@, %@",[(NSDictionary*)[_autoComplete objectAtIndex:row] objectForKey:@"city"],[(NSDictionary*)[_autoComplete objectAtIndex:row] objectForKey:@"state"]  ];
 }
 @end
