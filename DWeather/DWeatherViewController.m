@@ -51,10 +51,13 @@
         NSLog(@"%@",self.currentWeather);
         UIActionSheet *autoCompleteSheet = [[UIActionSheet alloc] initWithTitle:@"Please select a City:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"OK", nil];
         UIPickerView *cityPicker = [[UIPickerView alloc] init];
-        _autoComplete = [(NSDictionary*)_currentWeather objectForKey:@"results"];
+        _autoComplete = [[((NSDictionary*)_currentWeather) objectForKey:@"response"] objectForKey:@"results"];
         NSLog(@"%@",_autoComplete);
         cityPicker.delegate=self;
         cityPicker.dataSource=self;
+        [cityPicker setBounds:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height/4)];
+        [autoCompleteSheet setActionSheetStyle:UIActionSheetStyleBlackOpaque];
+        [autoCompleteSheet setAutoresizesSubviews:YES];
         [autoCompleteSheet addSubview:cityPicker];
         [autoCompleteSheet showFromRect:CGRectMake(0, 0, self.view.frame.size.width , self.view.frame.size.height/2) inView:self.view animated:YES];
         
@@ -170,5 +173,20 @@
 //    return [self.currentWeather ];
     NSString* returnString = @"";
     return [returnString stringByAppendingFormat:@"%@, %@",[(NSDictionary*)[_autoComplete objectAtIndex:row] objectForKey:@"city"],[(NSDictionary*)[_autoComplete objectAtIndex:row] objectForKey:@"state"]  ];
+}
+
+#pragma mark - UIPickerViewDelegate methods
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    _locationTextField.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    _autoComplete = nil;
+    self.engine.isAutocomplete = NO;
+    self.fetchWeather;
+}
+
+
+
+#pragma mark - UIActionSheetDelegate methods
+-(void)actionSheetCancel:(UIActionSheet *)actionSheet{
+    _locationTextField.text = @"";
 }
 @end

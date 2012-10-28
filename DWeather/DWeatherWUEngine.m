@@ -28,26 +28,32 @@
     NSString* locationRequestString = [weatherLocation stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
    NSString* weatherRequestCurrentString = [@"http://api.wunderground.com/api/" stringByAppendingFormat:@"%@/conditions/q/%@.json",_API_KEY,locationRequestString];
 
-    NSArray *JSONAutoComplete = [[self obtainJSONForURL:weatherRequestCurrentString] objectForKey:@"response"];
-    if([JSONAutoComplete count] > 0){
-        _isAutocomplete = YES;
-        return JSONAutoComplete;
-    }
     NSDictionary *JSONResponse = [self obtainJSONForURL:weatherRequestCurrentString];
-    NSLog(@"%@", JSONResponse);
-    NSDictionary *currentObservations = [JSONResponse objectForKey:@"current_observation"];
-    NSDictionary *currentLocation = [currentObservations objectForKey:@"display_location"];
-    DWeatherCurrentConditions* current = [[DWeatherCurrentConditions alloc] init];
-    current.dateString = [[currentObservations objectForKey:@"local_time_rfc822"] substringToIndex:3];
-    current.currentTemperature = [currentObservations objectForKey:@"temp_f"];
-    current.iconPath = [currentObservations objectForKey:@"icon_url"];
-    current.cityString = [currentLocation objectForKey:@"full"];
-    current.windString = [NSString stringWithFormat:@"%@ MPH %@",[currentObservations objectForKey:@"wind_mph"],[currentObservations objectForKey:@"wind_dir"]];
-    current.humidityString = [currentObservations objectForKey:@"relative_humidity"];
-    current.conditionsString = [NSString stringWithFormat:@"%@",[[currentObservations objectForKey:@"weather"] description]];
-    [array addObject:current];
-    _isAutocomplete = false;
-    return array;
+    NSDictionary *JSONAutoComplete = [JSONResponse objectForKey:@"response"];
+    NSLog(@"%@",JSONAutoComplete);
+    NSArray* cityList = [JSONAutoComplete objectForKey:@"results"];
+    if(cityList !=nil){
+        _isAutocomplete = YES;
+        return JSONResponse;
+    }
+    else{
+//        NSDictionary *JSONResponse = [self obtainJSONForURL:weatherRequestCurrentString];
+       NSLog(@"%@", JSONResponse);
+        NSDictionary *currentObservations = [JSONResponse objectForKey:@"current_observation"];
+        NSDictionary *currentLocation = [currentObservations objectForKey:@"display_location"];
+        DWeatherCurrentConditions* current = [[DWeatherCurrentConditions alloc] init];
+        current.dateString = [[currentObservations objectForKey:@"local_time_rfc822"] substringToIndex:3];
+        current.currentTemperature = [currentObservations objectForKey:@"temp_f"];
+        current.iconPath = [currentObservations objectForKey:@"icon_url"];
+        current.cityString = [currentLocation objectForKey:@"full"];
+        current.windString = [NSString stringWithFormat:@"%@ MPH %@",[currentObservations objectForKey:@"wind_mph"],[currentObservations objectForKey:@"wind_dir"]];
+        current.humidityString = [currentObservations objectForKey:@"relative_humidity"];
+        current.conditionsString = [NSString stringWithFormat:@"%@",[[currentObservations objectForKey:@"weather"] description]];
+        [array addObject:current];
+        _isAutocomplete = false;
+        return array;
+    }
+
 }
 /**
  */
@@ -57,7 +63,6 @@
      NSString* locationRequestString = [weatherLocation stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSString* weatherForecastRequestString = [@"http://api.wunderground.com/api/" stringByAppendingFormat:@"%@/forecast/q/%@.json",_API_KEY,locationRequestString];
     NSDictionary *JSONResponse = [[self obtainJSONForURL:weatherForecastRequestString] objectForKey:@"forecast"];
-    NSLog(@"%@",JSONResponse);
     NSArray *forecastTxtArray = [[JSONResponse objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];
     NSArray* forecastSimpleArray = [[JSONResponse objectForKey:@"simpleforecast"] objectForKey:@"forecastday"];
     
@@ -69,7 +74,6 @@
         newDay.forecastIconPath = [forecastSimpleConditions objectForKey:@"icon_url"];
         newDay.forecastCondition = [[forecastSimpleConditions objectForKey:@"conditions"] description];
         newDay.highTemp = [[forecastSimpleConditions objectForKey:@"high"] objectForKey:@"fahrenheit"];
-        NSLog(@"%@",newDay.highTemp);
         newDay.lowTemp = [[forecastSimpleConditions objectForKey:@"low"] objectForKey:@"fahrenheit"];
         newDay.dayOfWeek = [[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"weekday_short"] ;
         [returnArray addObject:newDay];
