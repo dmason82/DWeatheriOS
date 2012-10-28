@@ -51,7 +51,8 @@
         NSLog(@"%@",self.currentWeather);
         UIActionSheet *autoCompleteSheet = [[UIActionSheet alloc] initWithTitle:@"Please select a City:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"OK", nil];
         UIPickerView *cityPicker = [[UIPickerView alloc] init];
-        _autoComplete = [[((NSDictionary*)_currentWeather) objectForKey:@"response"] objectForKey:@"results"];
+//        _autoComplete = [[((NSDictionary*)_currentWeather) objectForKey:@"response"] objectForKey:@"results"];
+        _autoComplete = _currentWeather;
         NSLog(@"%@",_autoComplete);
         cityPicker.delegate=self;
         cityPicker.dataSource=self;

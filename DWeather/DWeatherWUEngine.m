@@ -34,7 +34,7 @@
     NSArray* cityList = [JSONAutoComplete objectForKey:@"results"];
     if(cityList !=nil){
         _isAutocomplete = YES;
-        return JSONResponse;
+        return cityList;
     }
     else{
 //        NSDictionary *JSONResponse = [self obtainJSONForURL:weatherRequestCurrentString];

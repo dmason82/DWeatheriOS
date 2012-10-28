@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class DWeatherWUEngine;
 @interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDataSource>
-@property(nonatomic,weak)NSArray *weatherDays;
+@property(nonatomic,strong)NSArray *weatherDays;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UITableView *weatherConditionsTable;
 @property(strong,nonatomic)NSArray* currentWeather;
