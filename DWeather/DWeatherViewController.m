@@ -49,20 +49,20 @@
      */
     if(self.engine.isAutocomplete){
         NSLog(@"%@",self.currentWeather);
-        _autoCompleteSheet = [[UIActionSheet alloc] initWithTitle:@"Please select a City:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"OK", nil];
+        _autoCompleteSheet = [[UIActionSheet alloc] initWithTitle:@"Please select a City:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: nil];
+        [_autoCompleteSheet setFrame:CGRectMake(0, 0, 320, 350)];
         UIPickerView *cityPicker = [[UIPickerView alloc] init];
 //        _autoComplete = [[((NSDictionary*)_currentWeather) objectForKey:@"response"] objectForKey:@"results"];
         _autoComplete = _currentWeather;
-        NSLog(@"%@",_autoComplete);
+        cityPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 100, 320, 200)];
         cityPicker.delegate=self;
         cityPicker.dataSource=self;
-        [cityPicker setBounds:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height/4)];
-        [_autoCompleteSheet setActionSheetStyle:UIActionSheetStyleBlackOpaque];
-        [_autoCompleteSheet setAutoresizesSubviews:YES];
         [_autoCompleteSheet addSubview:cityPicker];
-        [_autoCompleteSheet showFromRect:CGRectMake(0, 0, self.view.frame.size.width , self.view.frame.size.height/2) inView:self.view animated:YES];
+        [_autoCompleteSheet showInView:self.view.window];
         
-        
+        [UIView beginAnimations:nil context:nil];
+        [_autoCompleteSheet setBounds:CGRectMake(0, 0, 320, 400)];
+        [UIView commitAnimations];
     }else{
         self.forecastWeather = [self.engine obtainForecastConditions:self.locationTextField.text];
         self.locationLabel.text = [@"Weather for:" stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[_currentWeather objectAtIndex:0]).cityString];
