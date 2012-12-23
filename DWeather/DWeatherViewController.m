@@ -13,6 +13,7 @@
 #import "DWeatherCurrentWeatherCell.h"
 #import "DWeatherForecastConditionsCell.h"
 #import "DWeatherCurrentDetailsViewController.h"
+#import "DWeatherForecastConditionsViewController.h"
 @interface DWeatherViewController ()
 @property(nonatomic,retain)NSArray *autoComplete;
 @end
@@ -49,7 +50,6 @@
      We will bring up a UI Actionsheet 
      */
     if(self.engine.isAutocomplete){
-        NSLog(@"%@",self.currentWeather);
         _autoCompleteSheet = [[UIActionSheet alloc] initWithTitle:@"Please select a City:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles: nil];
         [_autoCompleteSheet setFrame:CGRectMake(0, 0, 320, 350)];
         UIPickerView *cityPicker = [[UIPickerView alloc] init];
@@ -129,7 +129,9 @@
         case 0:
             [self performSegueWithIdentifier:@"currentDetailSegue" sender:self];
             break;
-            
+        case 1:
+            [self performSegueWithIdentifier:@"forecastDetailSegue" sender:indexPath];
+            break;
         default:
             break;
     }
@@ -141,7 +143,6 @@
         
     }
     else{
-        NSLog(@"%d",_forecastWeather.count);
         return [_forecastWeather count];
     }
 }
@@ -201,10 +202,15 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString: @"currentDetailSegue"]){
         DWeatherCurrentConditions *current = [_currentWeather objectAtIndex:0];
-        NSLog(@"Current: %@",current);
         DWeatherCurrentDetailsViewController* controller = (DWeatherCurrentDetailsViewController*)segue.destinationViewController;
         [controller setDetailItem:current];
 //        [(DWeatherCurrentDetailsViewController*)segue.destinationViewController setPrevious:self];
+    }
+    else if([[segue identifier] isEqualToString:@"forecastDetailSegue"]){
+        NSIndexPath* index = (NSIndexPath*)sender;
+        DWeatherWeatherForecastDay* day = (DWeatherWeatherForecastDay*)[self.forecastWeather objectAtIndex:index.row];
+        DWeatherForecastConditionsViewController* controller =(DWeatherForecastConditionsViewController*)[segue destinationViewController];
+        [controller setDetailItem:day];
     }
 }
 #pragma mark - UIActionSheetDelegate methods

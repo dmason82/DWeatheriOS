@@ -74,12 +74,13 @@
         NSDictionary * forecastConditions = [forecastTxtArray objectAtIndex:i];
         NSDictionary * forecastSimpleConditions = [forecastSimpleArray objectAtIndex:i];
         DWeatherWeatherForecastDay *newDay = [[DWeatherWeatherForecastDay alloc] init];
-        newDay.forecastDay = [@"" stringByAppendingFormat:@"%@/%@/%@",[forecastConditions objectForKey:@"month"],[forecastConditions objectForKey:@"day"],[forecastConditions objectForKey:@"year"]];
+        NSLog(@"%@",forecastConditions);
+        newDay.forecastDay = [@"" stringByAppendingFormat:@"%@/%@/%@",[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"month"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"day"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"year"]];
         newDay.forecastIconPath = [forecastSimpleConditions objectForKey:@"icon_url"];
         newDay.forecastCondition = [[forecastSimpleConditions objectForKey:@"conditions"] description];
         newDay.highTemp = [[forecastSimpleConditions objectForKey:@"high"] objectForKey:@"fahrenheit"];
         newDay.lowTemp = [[forecastSimpleConditions objectForKey:@"low"] objectForKey:@"fahrenheit"];
-        newDay.dayOfWeek = [[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"weekday_short"] ;
+        newDay.dayOfWeek = [[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"weekday_short"];
         [returnArray addObject:newDay];
     }
     return returnArray;

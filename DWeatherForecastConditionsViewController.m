@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad
 {
+    [self configureView];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -36,4 +37,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)configureView{
+    if(self.detailItem){
+        [self setTitle:self.detailItem.forecastDay];
+    }
+}
 @end

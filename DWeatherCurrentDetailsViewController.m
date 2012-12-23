@@ -24,14 +24,6 @@
     return self;
 }
 
-
-//-(void)setDetailItem:(DWeatherCurrentConditions *)newDetailItem{
-//    if (self.detailItem!=newDetailItem) {
-////        self.detailItem = newDetailItem;
-//        [self configureDisplay];
-//    }
-//
-//}
 - (void)viewDidLoad
 {
     [self configureDisplay];

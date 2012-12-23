@@ -193,7 +193,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="JvP-Fa-XEl">
-                                <rect key="frame" x="121" y="77" width="79" height="61"/>
+                                <rect key="frame" x="116" y="77" width="79" height="61"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jwk-Zl-EFP">
@@ -458,10 +458,10 @@
             </objects>
             <point key="canvasLocation" x="1298" y="-281"/>
         </scene>
-        <!--View Controller - Forecast Conditions-->
+        <!--Weather Forecast Conditions View Controller - Forecast Conditions-->
         <scene sceneID="1eY-ZJ-gdH">
             <objects>
-                <viewController id="Xjm-yM-ido" sceneMemberID="viewController">
+                <viewController id="Xjm-yM-ido" customClass="DWeatherForecastConditionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eDh-ug-5aB">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -528,6 +528,9 @@
                 <relationship kind="outlet" name="highTempLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="lowTempLabel" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="DWeatherForecastConditionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherForecastConditionsViewController.h"/>
         </class>
         <class className="DWeatherViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherViewController.h"/>

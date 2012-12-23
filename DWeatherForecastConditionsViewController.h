@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 @class DWeatherWeatherForecastDay;
 @interface DWeatherForecastConditionsViewController : UIViewController
-@property(retain,nonatomic)DWeatherWeatherForecastDay* detailItem;
+@property(weak,nonatomic)DWeatherWeatherForecastDay* detailItem;
+-(void)configureView;
 @end
