@@ -12,6 +12,7 @@
 #import "DWeatherWeatherForecastDay.h"
 #import "DWeatherCurrentWeatherCell.h"
 #import "DWeatherForecastConditionsCell.h"
+#import "DWeatherCurrentDetailsViewController.h"
 @interface DWeatherViewController ()
 @property(nonatomic,retain)NSArray *autoComplete;
 @end
@@ -105,7 +106,7 @@
         cell.humidityLabel.text = current.humidityString;
         cell.temperatureLabel.text = [[current.currentTemperature stringValue] stringByAppendingFormat:@"%@",@"°F" ];
         cell.conditionsLabel.text = current.conditionsString;
-        cell.windLabel.text = current.windString;
+//        cell.windLabel.text = current.windString;
         return cell;
     }
     //If we are in the weather forecast section
@@ -122,6 +123,17 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            [self performSegueWithIdentifier:@"currentDetailSegue" sender:self];
+            break;
+            
+        default:
+            break;
+    }
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section ==0){
@@ -186,7 +198,15 @@
 }
 
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString: @"currentDetailSegue"]){
+        DWeatherCurrentConditions *current = [_currentWeather objectAtIndex:0];
+        NSLog(@"Current: %@",current);
+        DWeatherCurrentDetailsViewController* controller = (DWeatherCurrentDetailsViewController*)segue.destinationViewController;
+        [controller setDetailItem:current];
+//        [(DWeatherCurrentDetailsViewController*)segue.destinationViewController setPrevious:self];
+    }
+}
 #pragma mark - UIActionSheetDelegate methods
 -(void)actionSheetCancel:(UIActionSheet *)actionSheet{
     _locationTextField.text = @"";

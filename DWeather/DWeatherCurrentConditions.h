@@ -21,6 +21,11 @@
 @property(nonatomic,strong)NSString* iconPath;
 @property(nonatomic,strong)NSString* cityString;
 @property(nonatomic,strong)NSString* humidityString;
-@property(nonatomic,strong)NSString* windString;
+@property(nonatomic,strong)NSNumber* windMPH;
+@property(nonatomic,strong)NSString* windDirection;
 @property(nonatomic,strong)NSString* conditionsString;
+@property(nonatomic,strong)NSNumber* feelsLikeTemperature;
+@property(nonatomic,strong)NSNumber* windGustMPH;
+@property(nonatomic,strong)NSNumber* visibilityMi;
+@property(nonatomic,strong)NSNumber* percipitationTodayIn;
 @end

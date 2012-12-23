@@ -26,6 +26,12 @@
 		A8392279160535350088E593 /* DWeatherCurrentWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8392278160535350088E593 /* DWeatherCurrentWeatherCell.m */; };
 		A839227C160537C50088E593 /* DWeatherForecastConditionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */; };
 		A839227F1605A9550088E593 /* DWeatherCurrentConditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */; };
+		A8473B4A1686A49A001EE7EE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8473B491686A49A001EE7EE /* Icon.png */; };
+		A8473B4D1686A4A1001EE7EE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8473B4C1686A4A1001EE7EE /* Icon@2x.png */; };
+		A8473B501686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */; };
+		A8473B511686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */; };
+		A8473B541686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B531686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m */; };
+		A8473B551686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B531686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +75,12 @@
 		A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherForecastConditionsCell.m; sourceTree = "<group>"; };
 		A839227D1605A9540088E593 /* DWeatherCurrentConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentConditions.h; sourceTree = "<group>"; };
 		A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherCurrentConditions.m; sourceTree = "<group>"; };
+		A8473B491686A49A001EE7EE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		A8473B4C1686A4A1001EE7EE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		A8473B4E1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentDetailsViewController.h; sourceTree = SOURCE_ROOT; };
+		A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherCurrentDetailsViewController.m; sourceTree = SOURCE_ROOT; };
+		A8473B521686B2A9001EE7EE /* DWeatherForecastConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherForecastConditionsViewController.h; sourceTree = SOURCE_ROOT; };
+		A8473B531686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherForecastConditionsViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,8 @@
 		A81C1A3E15FBDC1E00CBA4B6 = {
 			isa = PBXGroup;
 			children = (
+				A8473B4C1686A4A1001EE7EE /* Icon@2x.png */,
+				A8473B491686A49A001EE7EE /* Icon.png */,
 				A8392271160521980088E593 /* Default-568h@2x.png */,
 				A81C1A5315FBDC1E00CBA4B6 /* DWeather */,
 				A81C1A7115FBDC1E00CBA4B6 /* DWeatherTests */,
@@ -129,6 +143,10 @@
 		A81C1A5315FBDC1E00CBA4B6 /* DWeather */ = {
 			isa = PBXGroup;
 			children = (
+				A8473B521686B2A9001EE7EE /* DWeatherForecastConditionsViewController.h */,
+				A8473B531686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m */,
+				A8473B4E1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.h */,
+				A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */,
 				A81C1A5C15FBDC1E00CBA4B6 /* DWeatherAppDelegate.h */,
 				A81C1A5D15FBDC1E00CBA4B6 /* DWeatherAppDelegate.m */,
 				A81C1A5F15FBDC1E00CBA4B6 /* MainStoryboard.storyboard */,
@@ -254,6 +272,8 @@
 				A81C1A5815FBDC1E00CBA4B6 /* InfoPlist.strings in Resources */,
 				A81C1A6115FBDC1E00CBA4B6 /* MainStoryboard.storyboard in Resources */,
 				A8392272160521980088E593 /* Default-568h@2x.png in Resources */,
+				A8473B4A1686A49A001EE7EE /* Icon.png in Resources */,
+				A8473B4D1686A4A1001EE7EE /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +316,8 @@
 				A8392279160535350088E593 /* DWeatherCurrentWeatherCell.m in Sources */,
 				A839227C160537C50088E593 /* DWeatherForecastConditionsCell.m in Sources */,
 				A839227F1605A9550088E593 /* DWeatherCurrentConditions.m in Sources */,
+				A8473B501686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */,
+				A8473B541686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +326,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A81C1A7915FBDC1F00CBA4B6 /* DWeatherTests.m in Sources */,
+				A8473B511686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */,
+				A8473B551686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

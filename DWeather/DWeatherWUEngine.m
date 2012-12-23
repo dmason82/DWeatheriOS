@@ -46,8 +46,12 @@
         current.currentTemperature = [currentObservations objectForKey:@"temp_f"];
         current.iconPath = [currentObservations objectForKey:@"icon_url"];
         current.cityString = [currentLocation objectForKey:@"full"];
-        current.windString = [NSString stringWithFormat:@"%@ MPH %@",[currentObservations objectForKey:@"wind_mph"],[currentObservations objectForKey:@"wind_dir"]];
+        current.windMPH = [currentObservations objectForKey:@"wind_mph"];
+        current.windDirection =[currentObservations objectForKey:@"wind_dir"];
         current.humidityString = [currentObservations objectForKey:@"relative_humidity"];
+        current.visibilityMi = [currentObservations objectForKey:@"visibility_mi"];
+        current.windGustMPH = [currentObservations objectForKey:@"wind_gust_mph"];
+        current.percipitationTodayIn = [currentObservations objectForKey:@"parcip_today_in"];
         current.conditionsString = [NSString stringWithFormat:@"%@",[[currentObservations objectForKey:@"weather"] description]];
         [array addObject:current];
         _isAutocomplete = false;

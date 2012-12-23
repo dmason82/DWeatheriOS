@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-NSString* const CITY_KEY = @"city";
+//NSString* const CITY_KEY = @"city";
 @class DWeatherWUEngine;
 @interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 @property(nonatomic,strong)NSArray *weatherDays;
