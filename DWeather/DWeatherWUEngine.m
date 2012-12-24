@@ -74,13 +74,15 @@
         NSDictionary * forecastConditions = [forecastTxtArray objectAtIndex:i];
         NSDictionary * forecastSimpleConditions = [forecastSimpleArray objectAtIndex:i];
         DWeatherWeatherForecastDay *newDay = [[DWeatherWeatherForecastDay alloc] init];
-        NSLog(@"%@",forecastConditions);
         newDay.forecastDay = [@"" stringByAppendingFormat:@"%@/%@/%@",[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"month"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"day"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"year"]];
         newDay.forecastIconPath = [forecastSimpleConditions objectForKey:@"icon_url"];
         newDay.forecastCondition = [[forecastSimpleConditions objectForKey:@"conditions"] description];
         newDay.highTemp = [[forecastSimpleConditions objectForKey:@"high"] objectForKey:@"fahrenheit"];
         newDay.lowTemp = [[forecastSimpleConditions objectForKey:@"low"] objectForKey:@"fahrenheit"];
         newDay.dayOfWeek = [[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"weekday_short"];
+        newDay.forecastWindText = [NSString stringWithFormat:@"%.2f MPH to the %@",[[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"mph"] floatValue],[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"dir"]];
+        newDay.forecastPercipitation = [NSString stringWithFormat:@"%.2f inches",[[[forecastSimpleConditions objectForKey:@"qpf_allday"] objectForKey:@"in"] floatValue]];
+        newDay.averageHumidity = [forecastSimpleConditions objectForKey:@"avehumidity"];
         [returnArray addObject:newDay];
     }
     return returnArray;

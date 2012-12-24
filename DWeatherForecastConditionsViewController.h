@@ -10,5 +10,14 @@
 @class DWeatherWeatherForecastDay;
 @interface DWeatherForecastConditionsViewController : UIViewController
 @property(weak,nonatomic)DWeatherWeatherForecastDay* detailItem;
+@property (weak, nonatomic) IBOutlet UILabel *cityText;
+@property (weak, nonatomic) IBOutlet UIImageView *conditionsImage;
+@property (weak, nonatomic) IBOutlet UILabel *conditionsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *forecastHighLabel;
+@property (weak, nonatomic) IBOutlet UILabel *forecastLowLabel;
+@property (weak, nonatomic) IBOutlet UILabel *averageWindLabel;
+@property (weak, nonatomic) IBOutlet UILabel *forecastPercipitationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *forecastAverageHumidityLabel;
+@property (strong,nonatomic)NSString* cityLocation;
 -(void)configureView;
 @end

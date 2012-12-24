@@ -211,6 +211,7 @@
         DWeatherWeatherForecastDay* day = (DWeatherWeatherForecastDay*)[self.forecastWeather objectAtIndex:index.row];
         DWeatherForecastConditionsViewController* controller =(DWeatherForecastConditionsViewController*)[segue destinationViewController];
         [controller setDetailItem:day];
+        [controller setCityLocation:[NSString stringWithFormat:@"%@",[((DWeatherCurrentConditions*)[self.currentWeather objectAtIndex:0]) cityString]]];
     }
 }
 #pragma mark - UIActionSheetDelegate methods

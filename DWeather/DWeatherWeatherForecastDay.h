@@ -22,4 +22,6 @@
 @property(nonatomic,strong)NSString *forecastIconPath;
 @property(nonatomic,strong)NSString *forecastCondition;
 @property(nonatomic,strong)NSString *forecastWindText;
+@property(nonatomic,strong)NSNumber *averageHumidity;
+@property(nonatomic,strong)NSString *forecastPercipitation;
 @end
