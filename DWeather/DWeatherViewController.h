@@ -18,6 +18,8 @@
 @property(retain,nonatomic)UIActionSheet* autoCompleteSheet;
 @property(nonatomic,strong)DWeatherWUEngine *engine;
 @property(nonatomic,weak)IBOutlet UITextField *locationTextField;
+@property(nonatomic,strong)NSUserDefaults* appDefaults;
 -(IBAction)fetchWeather;
+-(IBAction)aboutApp:(id)sender;
 
 @end

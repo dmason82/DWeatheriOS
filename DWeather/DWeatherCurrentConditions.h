@@ -27,5 +27,5 @@
 @property(nonatomic,strong)NSNumber* feelsLikeTemperature;
 @property(nonatomic,strong)NSNumber* windGustMPH;
 @property(nonatomic,strong)NSNumber* visibilityMi;
-@property(nonatomic,strong)NSNumber* percipitationTodayIn;
+@property(nonatomic,strong)NSNumber* precipitationTodayIn;
 @end

@@ -22,6 +22,9 @@
 		A81C1A7915FBDC1F00CBA4B6 /* DWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A81C1A7815FBDC1F00CBA4B6 /* DWeatherTests.m */; };
 		A81C1A8415FBDC3C00CBA4B6 /* DWeatherWUEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A81C1A8315FBDC3C00CBA4B6 /* DWeatherWUEngine.m */; };
 		A81C1A8715FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m in Sources */ = {isa = PBXBuildFile; fileRef = A81C1A8615FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m */; };
+		A82369D5168A393200996D8E /* DWeatherAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A82369D4168A393200996D8E /* DWeatherAboutViewController.m */; };
+		A82369DB168A3E1700996D8E /* wundergroundLogoIOS.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */; };
+		A82369DC168A3E1700996D8E /* wundergroundLogoIOS.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */; };
 		A8392272160521980088E593 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8392271160521980088E593 /* Default-568h@2x.png */; };
 		A8392279160535350088E593 /* DWeatherCurrentWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8392278160535350088E593 /* DWeatherCurrentWeatherCell.m */; };
 		A839227C160537C50088E593 /* DWeatherForecastConditionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */; };
@@ -68,6 +71,9 @@
 		A81C1A8315FBDC3C00CBA4B6 /* DWeatherWUEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherWUEngine.m; sourceTree = "<group>"; };
 		A81C1A8515FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherWeatherForecastDay.h; sourceTree = "<group>"; };
 		A81C1A8615FBDCCE00CBA4B6 /* DWeatherWeatherForecastDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherWeatherForecastDay.m; sourceTree = "<group>"; };
+		A82369D3168A393200996D8E /* DWeatherAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherAboutViewController.h; sourceTree = "<group>"; };
+		A82369D4168A393200996D8E /* DWeatherAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherAboutViewController.m; sourceTree = "<group>"; };
+		A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wundergroundLogoIOS.jpg; sourceTree = "<group>"; };
 		A8392271160521980088E593 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A8392277160535350088E593 /* DWeatherCurrentWeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentWeatherCell.h; sourceTree = "<group>"; };
 		A8392278160535350088E593 /* DWeatherCurrentWeatherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherCurrentWeatherCell.m; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 		A81C1A3E15FBDC1E00CBA4B6 = {
 			isa = PBXGroup;
 			children = (
+				A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */,
 				A8473B4C1686A4A1001EE7EE /* Icon@2x.png */,
 				A8473B491686A49A001EE7EE /* Icon.png */,
 				A8392271160521980088E593 /* Default-568h@2x.png */,
@@ -163,6 +170,8 @@
 				A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */,
 				A839227D1605A9540088E593 /* DWeatherCurrentConditions.h */,
 				A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */,
+				A82369D3168A393200996D8E /* DWeatherAboutViewController.h */,
+				A82369D4168A393200996D8E /* DWeatherAboutViewController.m */,
 			);
 			path = DWeather;
 			sourceTree = "<group>";
@@ -274,6 +283,7 @@
 				A8392272160521980088E593 /* Default-568h@2x.png in Resources */,
 				A8473B4A1686A49A001EE7EE /* Icon.png in Resources */,
 				A8473B4D1686A4A1001EE7EE /* Icon@2x.png in Resources */,
+				A82369DB168A3E1700996D8E /* wundergroundLogoIOS.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A81C1A7615FBDC1E00CBA4B6 /* InfoPlist.strings in Resources */,
+				A82369DC168A3E1700996D8E /* wundergroundLogoIOS.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +329,7 @@
 				A839227F1605A9550088E593 /* DWeatherCurrentConditions.m in Sources */,
 				A8473B501686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */,
 				A8473B541686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m in Sources */,
+				A82369D5168A393200996D8E /* DWeatherAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

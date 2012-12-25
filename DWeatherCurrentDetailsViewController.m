@@ -50,7 +50,7 @@
         NSAttributedString* humidityAttributedString = [[NSAttributedString alloc] initWithString:self.detailItem.humidityString attributes:fontAtributes];
         NSAttributedString* windAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ MPH to the %@",self.detailItem.windMPH,self.detailItem.windDirection] attributes:fontAtributes];
         NSAttributedString* conditionAttributedString = [[NSAttributedString alloc] initWithString:self.detailItem.conditionsString attributes:boldFontAtributes];
-        NSAttributedString* percipitationAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f inches",[self.detailItem.percipitationTodayIn floatValue]] attributes:fontAtributes];
+        NSAttributedString* precipitationAttributedString = [self.detailItem.precipitationTodayIn floatValue]!=-999.00?[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f inches",[self.detailItem.precipitationTodayIn floatValue]] attributes:fontAtributes]:[[NSAttributedString alloc] initWithString:@"No data" attributes:fontAtributes];
         NSAttributedString* feelsLikeAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d\u00B0F ",[self.detailItem.feelsLikeTemperature intValue]] attributes:fontAtributes];
         NSAttributedString* windGustsAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f MPH",[self.detailItem.windGustMPH floatValue]] attributes:fontAtributes];
         NSAttributedString* visibilityAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f miles",[self.detailItem.visibilityMi floatValue]] attributes:fontAtributes];
@@ -62,7 +62,7 @@
         [_currentWindLabel setAttributedText:windAttributedString];
         [_currentConditionsLabel setAttributedText:conditionAttributedString];
         [_currentConditionsLabel setTextAlignment:NSTextAlignmentCenter];
-        [_currentRainfallTodayLabel setAttributedText:percipitationAttributedString];
+        [_currentRainfallTodayLabel setAttributedText:precipitationAttributedString];
         [_currentFeelsLikeLabel setAttributedText:feelsLikeAttributedString];
         [_currentWindGustsLabel setAttributedText:windGustsAttributedString];
         [_currentVisibilityLabel setAttributedText:visibilityAttributedString];

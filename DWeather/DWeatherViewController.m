@@ -24,6 +24,12 @@
 {
     [super viewDidLoad];
     _engine = [[DWeatherWUEngine alloc] init];
+    _appDefaults = [NSUserDefaults standardUserDefaults];
+    [_locationTextField setDelegate:self];
+    if ([_appDefaults objectForKey:@"savedLocation"]){
+        [_locationTextField setText:[_appDefaults objectForKey:@"savedLocation"]];
+        [self fetchWeather];
+    }
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -45,6 +51,8 @@
 -(IBAction)fetchWeather
 {
     [self.locationTextField resignFirstResponder];
+    [_appDefaults setValue:_locationTextField.text forKey:@"savedLocation"];
+    [_appDefaults synchronize];
     self.currentWeather = [self.engine obtainCurrentConditions:self.locationTextField.text];
     /**Case in which WUnderground Autocomplete API is instantiated.
      We will bring up a UI Actionsheet 
@@ -217,5 +225,12 @@
 #pragma mark - UIActionSheetDelegate methods
 -(void)actionSheetCancel:(UIActionSheet *)actionSheet{
     _locationTextField.text = @"";
+}
+
+
+
+#pragma mark - UIBarButtonItem responders
+-(IBAction)aboutApp:(id)sender{
+    [self performSegueWithIdentifier:@"aboutAppSegue" sender:self];
 }
 @end

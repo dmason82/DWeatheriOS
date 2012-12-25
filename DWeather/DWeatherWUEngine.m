@@ -51,7 +51,8 @@
         current.humidityString = [currentObservations objectForKey:@"relative_humidity"];
         current.visibilityMi = [currentObservations objectForKey:@"visibility_mi"];
         current.windGustMPH = [currentObservations objectForKey:@"wind_gust_mph"];
-        current.percipitationTodayIn = [currentObservations objectForKey:@"parcip_today_in"];
+        current.feelsLikeTemperature = [currentObservations objectForKey:@"feelslike_f"];
+        current.precipitationTodayIn = [currentObservations objectForKey:@"precip_today_in"];
         current.conditionsString = [NSString stringWithFormat:@"%@",[[currentObservations objectForKey:@"weather"] description]];
         [array addObject:current];
         _isAutocomplete = false;
@@ -67,11 +68,11 @@
      NSString* locationRequestString = [weatherLocation stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSString* weatherForecastRequestString = [@"http://api.wunderground.com/api/" stringByAppendingFormat:@"%@/forecast/q/%@.json",_API_KEY,locationRequestString];
     NSDictionary *JSONResponse = [[self obtainJSONForURL:weatherForecastRequestString] objectForKey:@"forecast"];
-    NSArray *forecastTxtArray = [[JSONResponse objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];
+//    NSArray *forecastTxtArray = [[JSONResponse objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];
     NSArray* forecastSimpleArray = [[JSONResponse objectForKey:@"simpleforecast"] objectForKey:@"forecastday"];
     
     for (int i = 0; i < [forecastSimpleArray count] ;i++) {
-        NSDictionary * forecastConditions = [forecastTxtArray objectAtIndex:i];
+//        NSDictionary * forecastConditions = [forecastTxtArray objectAtIndex:i];
         NSDictionary * forecastSimpleConditions = [forecastSimpleArray objectAtIndex:i];
         DWeatherWeatherForecastDay *newDay = [[DWeatherWeatherForecastDay alloc] init];
         newDay.forecastDay = [@"" stringByAppendingFormat:@"%@/%@/%@",[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"month"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"day"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"year"]];
