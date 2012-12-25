@@ -133,6 +133,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     switch (indexPath.section) {
         case 0:
             [self performSegueWithIdentifier:@"currentDetailSegue" sender:self];
