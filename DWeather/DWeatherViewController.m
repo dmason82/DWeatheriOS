@@ -28,8 +28,8 @@
     [_locationTextField setDelegate:self];
     if ([_appDefaults objectForKey:@"savedLocation"]){
         [_locationTextField setText:[_appDefaults objectForKey:@"savedLocation"]];
-        [self fetchWeather];
     }
+    [self checkConnectivity];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -233,5 +233,31 @@
 #pragma mark - UIBarButtonItem responders
 -(IBAction)aboutApp:(id)sender{
     [self performSegueWithIdentifier:@"aboutAppSegue" sender:self];
+}
+
+
+#pragma mark - Network diagnostics
+-(void)checkConnectivity{
+    //Commenting out code due to Apple bug 12443370 , this is erroneous for 3G/4G connections
+//    CFNetDiagnosticRef diag;
+//    diag = CFNetDiagnosticCreateWithURL(kCFAllocatorDefault, (__bridge CFURLRef)[NSURL URLWithString:@"http://www.wunderground.com"]);
+//    CFNetDiagnosticStatus results = CFNetDiagnosticCopyNetworkStatusPassively(diag, NULL);
+//    NSLog(@"%ld %d",results,kCFNetDiagnosticConnectionDown);
+//    if(results == kCFNetDiagnosticConnectionUp){
+//        return YES;
+//    }
+//    else if(results==kCFNetDiagnosticConnectionDown){
+//        return NO;
+//    }
+//    else{
+//        return YES;
+//    }
+    NSURL* url = [NSURL URLWithString:@"http://www.wunderground.com"];
+    NSURLConnection* connection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Network connection error!" message:@"Application requires a network connection to fetch weather data." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
 }
 @end

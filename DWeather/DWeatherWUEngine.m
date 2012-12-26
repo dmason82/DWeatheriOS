@@ -37,8 +37,6 @@
         return cityList;
     }
     else{
-//        NSDictionary *JSONResponse = [self obtainJSONForURL:weatherRequestCurrentString];
-       NSLog(@"%@", JSONResponse);
         NSDictionary *currentObservations = [JSONResponse objectForKey:@"current_observation"];
         NSDictionary *currentLocation = [currentObservations objectForKey:@"display_location"];
         DWeatherCurrentConditions* current = [[DWeatherCurrentConditions alloc] init];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 //NSString* const CITY_KEY = @"city";
 @class DWeatherWUEngine;
-@interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NSURLConnectionDelegate>
 @property(nonatomic,strong)NSArray *weatherDays;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UITableView *weatherConditionsTable;
