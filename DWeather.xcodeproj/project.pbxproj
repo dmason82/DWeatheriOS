@@ -81,8 +81,6 @@
 		A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherForecastConditionsCell.m; sourceTree = "<group>"; };
 		A839227D1605A9540088E593 /* DWeatherCurrentConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentConditions.h; sourceTree = "<group>"; };
 		A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherCurrentConditions.m; sourceTree = "<group>"; };
-		A84672A7168B5E7B00494DA0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		A84672AA168B5E8700494DA0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A8473B491686A49A001EE7EE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		A8473B4C1686A4A1001EE7EE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		A8473B4E1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentDetailsViewController.h; sourceTree = SOURCE_ROOT; };
@@ -118,8 +116,6 @@
 		A81C1A3E15FBDC1E00CBA4B6 = {
 			isa = PBXGroup;
 			children = (
-				A84672AA168B5E8700494DA0 /* CFNetwork.framework */,
-				A84672A7168B5E7B00494DA0 /* CoreFoundation.framework */,
 				A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */,
 				A8473B4C1686A4A1001EE7EE /* Icon@2x.png */,
 				A8473B491686A49A001EE7EE /* Icon.png */,

@@ -254,6 +254,7 @@
 //    }
     NSURL* url = [NSURL URLWithString:@"http://www.wunderground.com"];
     NSURLConnection* connection = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
+    NSLog(@"%@",connection);
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
