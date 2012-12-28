@@ -13,4 +13,5 @@
 @property(nonatomic,weak)IBOutlet UILabel* appVersionLabel;
 @property(nonatomic,weak)IBOutlet UIImageView* appIconImage;
 @property(nonatomic,weak)IBOutlet UIImageView* wundergroundImage;
+-(IBAction)goToWunderground:(id)sender;
 @end

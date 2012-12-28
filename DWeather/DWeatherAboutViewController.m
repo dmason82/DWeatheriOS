@@ -48,4 +48,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Utility functions
+-(IBAction)goToWunderground:(id)sender{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.wunderground.com"]];
+}
 @end
