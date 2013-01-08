@@ -14,6 +14,7 @@
 #import "DWeatherForecastConditionsCell.h"
 #import "DWeatherCurrentDetailsViewController.h"
 #import "DWeatherForecastConditionsViewController.h"
+#import "DWeatherTableViewController.h"
 @interface DWeatherViewController ()
 @property(nonatomic,retain)NSArray *autoComplete;
 @end
@@ -29,6 +30,13 @@
     if ([_appDefaults objectForKey:@"savedLocation"]){
         [_locationTextField setText:[_appDefaults objectForKey:@"savedLocation"]];
     }
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl setTintColor:[UIColor blueColor]];
+    [refreshControl addTarget:_controller action:@selector(fetchWeather) forControlEvents:UIControlEventValueChanged];
+    self.controller = [[DWeatherTableViewController alloc] init];
+    [self.controller setTableView:_weatherConditionsTable];
+    [self.controller setRefreshControl:refreshControl];
+    [self.controller setController:self];
     [self checkConnectivity];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -260,5 +268,10 @@
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Network connection error!" message:@"Application requires a network connection to fetch weather data." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
+}
+
+-(void)updateTable{
+    [_weatherConditionsTable reloadData];
+    [_controller.refreshControl endRefreshing];
 }
 @end

@@ -51,6 +51,6 @@
 
 #pragma mark - Utility functions
 -(IBAction)goToWunderground:(id)sender{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.wunderground.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.wunderground.com/?apiref=285f060e5e00fcc9"]];
 }
 @end
