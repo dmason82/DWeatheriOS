@@ -113,7 +113,7 @@
         return [self.controller.forecastWeather count];
     }
 }
--(IBAction)fetchWeather
+-(void)fetchWeather
 {
     [self.controller.locationTextField resignFirstResponder];
     [self.controller.appDefaults setValue:self.controller.locationTextField.text forKey:@"savedLocation"];
@@ -127,7 +127,6 @@
         [self.controller.autoCompleteSheet setFrame:CGRectMake(0, 0, 320, 350)];
         UIPickerView *cityPicker = [[UIPickerView alloc] init];
         //        _autoComplete = [[((NSDictionary*)_currentWeather) objectForKey:@"response"] objectForKey:@"results"];
-//        self.controller.autoComplete = _currentWeather;
         cityPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 100, 320, 200)];
         cityPicker.delegate=_controller;
         cityPicker.dataSource=_controller;
