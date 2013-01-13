@@ -136,12 +136,20 @@
         [self.controller.autoCompleteSheet setBounds:CGRectMake(0, 0, 320, 400)];
         [UIView commitAnimations];
     }else{
-        self.controller.forecastWeather = [self.controller.engine obtainForecastConditions:self.controller.locationTextField.text];
-        self.controller.locationLabel.text = [@"Weather for:" stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[self.controller.currentWeather objectAtIndex:0]).cityString];
-        [self.tableView reloadData];
-//        self.controller.locationLabel setText:self.
-        [self.refreshControl endRefreshing];
+        NSOperationQueue* queue = [NSOperationQueue new];
+        NSInvocationOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fetchWeatherWithOperation) object:nil];
+        [queue addOperation:operation];
     }
     
+}
+
+-(void)fetchWeatherWithOperation{
+    self.controller.forecastWeather = [self.controller.engine obtainForecastConditions:self.controller.locationTextField.text];
+    NSString* weatherString = @"Weather for:";
+    weatherString = [weatherString stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[self.controller.currentWeather objectAtIndex:0]).cityString];
+    [self.controller.locationLabel performSelectorOnMainThread:@selector(setText:) withObject:weatherString waitUntilDone:YES];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    //        self.controller.locationLabel setText:self.
+    [self.refreshControl performSelectorOnMainThread:@selector(endRefreshing) withObject:nil waitUntilDone:YES];
 }
 @end

@@ -10,4 +10,5 @@
 #import "DWeatherViewController.h"
 @interface DWeatherTableViewController : UITableViewController
 @property(nonatomic,weak)DWeatherViewController* controller;
+-(void)fetchWeatherWithOperation;
 @end

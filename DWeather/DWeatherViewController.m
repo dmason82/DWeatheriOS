@@ -278,8 +278,9 @@
 
 -(void)obtainWeatherWithOperation{
     self.forecastWeather = [self.engine obtainForecastConditions:self.locationTextField.text];
-    
-    self.locationLabel.text = [@"Weather for:" stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[_currentWeather objectAtIndex:0]).cityString];
+    NSString* weatherString = @"Weather for:";
+    weatherString = [weatherString stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[self.currentWeather objectAtIndex:0]).cityString];
+    [self.locationLabel performSelectorOnMainThread:@selector(setText:) withObject:weatherString waitUntilDone:YES];
     [self.weatherConditionsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
