@@ -22,5 +22,5 @@
 @property(nonatomic,strong)DWeatherTableViewController* controller;
 -(IBAction)fetchWeather;
 -(IBAction)aboutApp:(id)sender;
-
+-(void)obtainWeatherWithOperation;
 @end

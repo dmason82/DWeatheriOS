@@ -81,13 +81,14 @@
         [_autoCompleteSheet setBounds:CGRectMake(0, 0, 320, 400)];
         [UIView commitAnimations];
     }else{
-        self.forecastWeather = [self.engine obtainForecastConditions:self.locationTextField.text];
-        self.locationLabel.text = [@"Weather for:" stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[_currentWeather objectAtIndex:0]).cityString];
-        [_weatherConditionsTable reloadData];
+        NSOperationQueue* queue = [NSOperationQueue new];
+        NSInvocationOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(obtainWeatherWithOperation) object:nil];
+        [queue addOperation:operation];
         
     }
 
 }
+
 
 /**We have 2 sections, current conditions and weather forecast.
  */
@@ -274,4 +275,12 @@
     [_weatherConditionsTable reloadData];
     [_controller.refreshControl endRefreshing];
 }
+
+-(void)obtainWeatherWithOperation{
+    self.forecastWeather = [self.engine obtainForecastConditions:self.locationTextField.text];
+    
+    self.locationLabel.text = [@"Weather for:" stringByAppendingFormat:@" %@",((DWeatherCurrentConditions*)[_currentWeather objectAtIndex:0]).cityString];
+    [self.weatherConditionsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+}
+
 @end
