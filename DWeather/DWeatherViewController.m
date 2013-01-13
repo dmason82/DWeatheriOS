@@ -30,6 +30,13 @@
     if ([_appDefaults objectForKey:@"savedLocation"]){
         [_locationTextField setText:[_appDefaults objectForKey:@"savedLocation"]];
     }
+    if([_appDefaults integerForKey:@"savedUnits"] ==1){
+        self.isMetric = [NSNumber numberWithInt:[_appDefaults integerForKey:@"savedUnits"]];
+        [self.isMetric isEqualToNumber:@0]?[self.unitsSegment setSelectedSegmentIndex:0]:[self.unitsSegment setSelectedSegmentIndex:1];
+    }
+    else{
+        self.isMetric = @0;
+    }
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setTintColor:[UIColor blueColor]];
     [refreshControl addTarget:_controller action:@selector(fetchWeather) forControlEvents:UIControlEventValueChanged];
@@ -45,6 +52,7 @@
 {
     [self setLocationLabel:nil];
     [self setWeatherConditionsTable:nil];
+    [self setUnitsSegment:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -121,7 +129,8 @@
         cell.dateLabel.text = current.dateString;
         cell.iconView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:current.iconPath]]];
         cell.humidityLabel.text = current.humidityString;
-        cell.temperatureLabel.text = [[current.currentTemperature stringValue] stringByAppendingFormat:@"%@",@"°F" ];
+        NSNumber* currentTemp = [self.isMetric isEqualToNumber:@0]?current.currentTemperatureF:current.currentTemperatureC;
+        cell.temperatureLabel.text = [[currentTemp stringValue] stringByAppendingFormat:@"°%@",([self.unitsButton isSelected]?@"C":@"F") ];
         cell.conditionsLabel.text = current.conditionsString;
 //        cell.windLabel.text = current.windString;
         return cell;
@@ -132,8 +141,10 @@
         DWeatherWeatherForecastDay *day = [_forecastWeather objectAtIndex:indexPath.row];
         cell.dayOfWeekLabel.text = day.dayOfWeek;
         cell.forecastIcon.image= [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:day.forecastIconPath]]];
-        cell.highTempLabel.text = [NSString stringWithFormat:@"%@°F",day.highTemp];
-        cell.lowTempLabel.text = [NSString stringWithFormat:@"%@°F",day.lowTemp];
+        NSNumber* highTemp = [self.isMetric isEqualToNumber:@0]?day.highTempF:day.highTempC;
+        NSNumber* lowTemp = [self.isMetric isEqualToNumber:@0]?day.lowTempF:day.lowTempC;
+        cell.highTempLabel.text = [NSString stringWithFormat:@"%@°%@",highTemp,[self.isMetric isEqualToNumber:@0]?@"F":@"C"];
+        cell.lowTempLabel.text = [NSString stringWithFormat:@"%@°%@",lowTemp,[self.isMetric isEqualToNumber:@0]?@"F":@"C"];
         cell.conditionLabel.text = day.forecastCondition;
         return cell;
     }
@@ -222,6 +233,7 @@
         DWeatherCurrentConditions *current = [_currentWeather objectAtIndex:0];
         DWeatherCurrentDetailsViewController* controller = (DWeatherCurrentDetailsViewController*)segue.destinationViewController;
         [controller setDetailItem:current];
+        [controller setIsMetric:_isMetric];
 //        [(DWeatherCurrentDetailsViewController*)segue.destinationViewController setPrevious:self];
     }
     else if([[segue identifier] isEqualToString:@"forecastDetailSegue"]){
@@ -230,6 +242,7 @@
         DWeatherForecastConditionsViewController* controller =(DWeatherForecastConditionsViewController*)[segue destinationViewController];
         [controller setDetailItem:day];
         [controller setCityLocation:[NSString stringWithFormat:@"%@",[((DWeatherCurrentConditions*)[self.currentWeather objectAtIndex:0]) cityString]]];
+        [controller setIsMetric:_isMetric];
     }
 }
 #pragma mark - UIActionSheetDelegate methods
@@ -242,6 +255,20 @@
 #pragma mark - UIBarButtonItem responders
 -(IBAction)aboutApp:(id)sender{
     [self performSegueWithIdentifier:@"aboutAppSegue" sender:self];
+}
+
+- (IBAction)toggleUnits:(id)sender {
+    if([self.unitsSegment selectedSegmentIndex]==1){
+        self.isMetric = @1;
+        [_appDefaults setInteger:1 forKey:@"savedUnits"];
+        [self.weatherConditionsTable reloadData];
+    }
+    else{
+        self.isMetric = @0;
+        [_appDefaults setInteger:0 forKey:@"savedUnits"];
+        [self.unitsButton setSelected:NO];
+        [self.weatherConditionsTable reloadData];
+    }
 }
 
 
@@ -283,5 +310,7 @@
     [self.locationLabel performSelectorOnMainThread:@selector(setText:) withObject:weatherString waitUntilDone:YES];
     [self.weatherConditionsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
+
+
 
 @end

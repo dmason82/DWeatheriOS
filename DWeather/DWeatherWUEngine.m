@@ -42,14 +42,18 @@
         NSDictionary *currentLocation = [currentObservations objectForKey:@"display_location"];
         DWeatherCurrentConditions* current = [[DWeatherCurrentConditions alloc] init];
         current.dateString = [[currentObservations objectForKey:@"local_time_rfc822"] substringToIndex:3];
-        current.currentTemperature = [currentObservations objectForKey:@"temp_f"];
+        current.currentTemperatureF = [currentObservations objectForKey:@"temp_f"];
+        current.currentTemperatureC = [currentObservations objectForKey:@"temp_c"];
         current.iconPath = [currentObservations objectForKey:@"icon_url"];
         current.cityString = [currentLocation objectForKey:@"full"];
         current.windMPH = [currentObservations objectForKey:@"wind_mph"];
+        current.windKPH = [currentObservations objectForKey:@"wind_kph"];
         current.windDirection =[currentObservations objectForKey:@"wind_dir"];
         current.humidityString = [currentObservations objectForKey:@"relative_humidity"];
         current.visibilityMi = [currentObservations objectForKey:@"visibility_mi"];
+        current.visibilityKm = [currentObservations objectForKey:@"visibility_km"];
         current.windGustMPH = [currentObservations objectForKey:@"wind_gust_mph"];
+        current.windGustKPH = [currentObservations objectForKey:@"wind_gust_kph"];
         current.feelsLikeTemperature = [currentObservations objectForKey:@"feelslike_f"];
         current.precipitationTodayIn = [currentObservations objectForKey:@"precip_today_in"];
         current.conditionsString = [NSString stringWithFormat:@"%@",[[currentObservations objectForKey:@"weather"] description]];
@@ -77,11 +81,16 @@
         newDay.forecastDay = [@"" stringByAppendingFormat:@"%@/%@/%@",[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"month"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"day"],[[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"year"]];
         newDay.forecastIconPath = [forecastSimpleConditions objectForKey:@"icon_url"];
         newDay.forecastCondition = [[forecastSimpleConditions objectForKey:@"conditions"] description];
-        newDay.highTemp = [[forecastSimpleConditions objectForKey:@"high"] objectForKey:@"fahrenheit"];
-        newDay.lowTemp = [[forecastSimpleConditions objectForKey:@"low"] objectForKey:@"fahrenheit"];
+        newDay.highTempF = [[forecastSimpleConditions objectForKey:@"high"] objectForKey:@"fahrenheit"];
+        newDay.lowTempF = [[forecastSimpleConditions objectForKey:@"low"] objectForKey:@"fahrenheit"];
+        newDay.highTempC = [[forecastSimpleConditions objectForKey:@"high"] objectForKey:@"celsius"];
+        newDay.lowTempC = [[forecastSimpleConditions objectForKey:@"low"] objectForKey:@"celsius"];
+        
         newDay.dayOfWeek = [[forecastSimpleConditions objectForKey:@"date"] objectForKey:@"weekday_short"];
-        newDay.forecastWindText = [NSString stringWithFormat:@"%.2f MPH to the %@",[[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"mph"] floatValue],[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"dir"]];
-        newDay.forecastPercipitation = [NSString stringWithFormat:@"%.2f inches",[[[forecastSimpleConditions objectForKey:@"qpf_allday"] objectForKey:@"in"] floatValue]];
+        newDay.forecastWindTextEnglish = [NSString stringWithFormat:@"%.2f MPH to the %@",[[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"mph"] floatValue],[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"dir"]];
+        newDay.forecastWindTextMetric = [NSString stringWithFormat:@"%.2f KPH to the %@",[[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"kph"] floatValue],[[forecastSimpleConditions objectForKey:@"avewind"] objectForKey:@"dir"]];
+        newDay.forecastPercipitationIn = [NSString stringWithFormat:@"%.2f inches",[[[forecastSimpleConditions objectForKey:@"qpf_allday"] objectForKey:@"in"] floatValue]];
+        newDay.forecastPercipitationCm = [NSString stringWithFormat:@"%.2f cm",[[[forecastSimpleConditions objectForKey:@"qpf_allday"] objectForKey:@"cm"] floatValue]];
         newDay.averageHumidity = [forecastSimpleConditions objectForKey:@"avehumidity"];
         [returnArray addObject:newDay];
     }

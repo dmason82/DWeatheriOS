@@ -45,7 +45,8 @@
         NSDictionary* fontAtributes = @{NSFontAttributeName : [UIFont fontWithName:@"Helvetica-Oblique" size:17.0]};
         NSDictionary* boldFontAtributes = @{NSFontAttributeName : [UIFont fontWithName:@"Helvetica-BoldOblique" size:17.0]};
         //Attributed text
-        NSAttributedString* tempAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\u00B0F",self.detailItem.currentTemperature.description] attributes:fontAtributes];
+        
+        NSAttributedString* tempAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\u00B0F",self.detailItem.currentTemperatureF.description] attributes:fontAtributes];
         NSAttributedString* cityAttributedString = [[NSAttributedString alloc] initWithString:self.detailItem.cityString attributes:fontAtributes];
         NSAttributedString* humidityAttributedString = [[NSAttributedString alloc] initWithString:self.detailItem.humidityString attributes:fontAtributes];
         NSAttributedString* windAttributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ MPH to the %@",self.detailItem.windMPH,self.detailItem.windDirection] attributes:fontAtributes];

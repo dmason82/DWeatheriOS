@@ -168,6 +168,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gk6-FD-qnz">
+                                <rect key="frame" x="20" y="89" width="104" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="US"/>
+                                    <segment title="Metric"/>
+                                </segments>
+                                <connections>
+                                    <action selector="toggleUnits:" destination="2" eventType="valueChanged" id="0Pl-BA-8kM"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -182,6 +193,7 @@
                     <connections>
                         <outlet property="locationLabel" destination="PQO-cn-qdM" id="hLf-Km-u5U"/>
                         <outlet property="locationTextField" destination="Eud-j2-ISu" id="qxU-Jl-nhq"/>
+                        <outlet property="unitsSegment" destination="gk6-FD-qnz" id="guC-I5-Hg7"/>
                         <outlet property="weatherConditionsTable" destination="uba-hQ-vpu" id="Bm7-YI-81b"/>
                         <segue destination="jc9-wq-87z" kind="push" identifier="currentDetailSegue" id="cQl-eP-KL2"/>
                         <segue destination="Xjm-yM-ido" kind="push" identifier="forecastDetailSegue" id="0jy-nk-fDk"/>
@@ -847,8 +859,11 @@
             <relationships>
                 <relationship kind="action" name="aboutApp:"/>
                 <relationship kind="action" name="fetchWeather"/>
+                <relationship kind="action" name="toggleUnits:"/>
                 <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="locationTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="unitsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="unitsSegment" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="weatherConditionsTable" candidateClass="UITableView"/>
             </relationships>
         </class>

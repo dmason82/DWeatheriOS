@@ -17,15 +17,20 @@
  currentConditions.setWind(currentObject.getString("wind_string"));*/
 @interface DWeatherCurrentConditions : NSObject
 @property(nonatomic,strong)NSString* dateString;
-@property(nonatomic,strong)NSNumber* currentTemperature;
+@property(nonatomic,strong)NSNumber* currentTemperatureF;
+@property(nonatomic,strong)NSNumber* currentTemperatureC;
 @property(nonatomic,strong)NSString* iconPath;
 @property(nonatomic,strong)NSString* cityString;
 @property(nonatomic,strong)NSString* humidityString;
 @property(nonatomic,strong)NSNumber* windMPH;
+@property(nonatomic,strong)NSNumber* windKPH;
 @property(nonatomic,strong)NSString* windDirection;
 @property(nonatomic,strong)NSString* conditionsString;
 @property(nonatomic,strong)NSNumber* feelsLikeTemperature;
 @property(nonatomic,strong)NSNumber* windGustMPH;
+@property(nonatomic,strong)NSNumber* windGustKPH;
 @property(nonatomic,strong)NSNumber* visibilityMi;
+@property(nonatomic,strong)NSNumber* visibilityKm;
 @property(nonatomic,strong)NSNumber* precipitationTodayIn;
+@property(nonatomic,strong)NSNumber* precipitationTodayMetric;
 @end

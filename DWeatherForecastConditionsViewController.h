@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *forecastPercipitationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *forecastAverageHumidityLabel;
 @property (strong,nonatomic)NSString* cityLocation;
+@property (strong,nonatomic)NSNumber* isMetric;
 -(void)configureView;
 @end

@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *currentConditionsPicture;
 @property (weak, nonatomic) IBOutlet UILabel *currentRainfallTodayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentConditionsLabel;
+@property (nonatomic,retain)NSNumber* isMetric;
 -(void)configureDisplay;
 @end

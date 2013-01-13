@@ -70,7 +70,8 @@
         cell.dateLabel.text = current.dateString;
         cell.iconView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:current.iconPath]]];
         cell.humidityLabel.text = current.humidityString;
-        cell.temperatureLabel.text = [[current.currentTemperature stringValue] stringByAppendingFormat:@"%@",@"°F" ];
+        NSNumber* currentTemp = [self.controller.isMetric isEqualToNumber:@0]?current.currentTemperatureF:current.currentTemperatureC;
+        cell.temperatureLabel.text = [[currentTemp stringValue] stringByAppendingFormat:@"°%@",[self.controller.isMetric isEqualToNumber:@0]?@"F":@"C" ];
         cell.conditionsLabel.text = current.conditionsString;
         //        cell.windLabel.text = current.windString;
         return cell;
@@ -81,8 +82,10 @@
         DWeatherWeatherForecastDay *day = [self.controller.forecastWeather objectAtIndex:indexPath.row];
         cell.dayOfWeekLabel.text = day.dayOfWeek;
         cell.forecastIcon.image= [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:day.forecastIconPath]]];
-        cell.highTempLabel.text = [NSString stringWithFormat:@"%@°F",day.highTemp];
-        cell.lowTempLabel.text = [NSString stringWithFormat:@"%@°F",day.lowTemp];
+        NSNumber* highTemp = [self.controller.isMetric isEqualToNumber:@0]?day.highTempF:day.highTempC;
+        NSNumber* lowTemp = [self.controller.isMetric isEqualToNumber:@0]?day.lowTempF:day.lowTempC;
+        cell.highTempLabel.text = [NSString stringWithFormat:@"%@°%@",highTemp,[self.controller.isMetric isEqualToNumber:@0]?@"F":@"C"];
+        cell.lowTempLabel.text = [NSString stringWithFormat:@"%@°%@",lowTemp,[self.controller.isMetric isEqualToNumber:@0]?@"F":@"C"];
         cell.conditionLabel.text = day.forecastCondition;
         return cell;
     }

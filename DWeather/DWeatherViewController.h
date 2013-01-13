@@ -18,9 +18,13 @@
 @property(retain,nonatomic)UIActionSheet* autoCompleteSheet;
 @property(nonatomic,strong)DWeatherWUEngine *engine;
 @property(nonatomic,weak)IBOutlet UITextField *locationTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *unitsSegment;
+@property (weak, nonatomic) IBOutlet UIButton *unitsButton;
 @property(nonatomic,strong)NSUserDefaults* appDefaults;
+@property(nonatomic,retain)NSNumber* isMetric;
 @property(nonatomic,strong)DWeatherTableViewController* controller;
 -(IBAction)fetchWeather;
+- (IBAction)toggleUnits:(id)sender;
 -(IBAction)aboutApp:(id)sender;
 -(void)obtainWeatherWithOperation;
 @end

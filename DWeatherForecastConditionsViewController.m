@@ -46,11 +46,15 @@
         NSDictionary* boldFontAtributes = @{NSFontAttributeName : [UIFont fontWithName:@"Helvetica-BoldOblique" size:17.0]};
         //AttributedText strings
         NSAttributedString* conditionString = [[NSAttributedString alloc] initWithString:self.detailItem.forecastCondition attributes:boldFontAtributes];
-        NSAttributedString* highTempString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d\u00B0F",[self.detailItem.highTemp intValue]] attributes:fontAtributes];
-        NSAttributedString* lowTempString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d\u00B0F",[self.detailItem.lowTemp intValue]] attributes:fontAtributes];
+        NSNumber* highTemp = [self.isMetric isEqualToNumber:@0]?self.detailItem.highTempF:self.detailItem.highTempC;
+        NSNumber* lowTemp = [self.isMetric isEqualToNumber:@0]?self.detailItem.lowTempF:self.detailItem.lowTempC;
+        NSString* windText = [self.isMetric isEqualToNumber:@0]?self.detailItem.forecastWindTextEnglish:self.detailItem.forecastWindTextMetric;
+        NSString* precipitation = [self.isMetric isEqualToNumber:@0]?self.detailItem.forecastPercipitationIn:self.detailItem.forecastPercipitationCm;
+        NSAttributedString* highTempString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d\u00B0%@",[highTemp intValue],[self.isMetric isEqualToNumber:@0]?@"F":@"C"] attributes:fontAtributes];
+        NSAttributedString* lowTempString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d\u00B0%@",[lowTemp intValue],[self.isMetric isEqualToNumber:@0]?@"F":@"C"] attributes:fontAtributes];
         NSAttributedString* cityAttributedText = [[NSAttributedString alloc] initWithString:self.cityLocation attributes:fontAtributes];
-        NSAttributedString* windAttributedString = [[NSAttributedString alloc] initWithString:self.detailItem.forecastWindText attributes:fontAtributes];
-        NSAttributedString* percipitationString = [[NSAttributedString alloc] initWithString:self.detailItem.forecastPercipitation attributes:fontAtributes];
+        NSAttributedString* windAttributedString = [[NSAttributedString alloc] initWithString:windText attributes:fontAtributes];
+        NSAttributedString* percipitationString = [[NSAttributedString alloc] initWithString:precipitation attributes:fontAtributes];
         NSAttributedString* humidityString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f%%",[self.detailItem.averageHumidity floatValue]] attributes:fontAtributes];
         
         //Label assignments
