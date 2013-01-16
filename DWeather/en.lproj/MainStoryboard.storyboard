@@ -168,8 +168,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gk6-FD-qnz">
-                                <rect key="frame" x="20" y="89" width="104" height="30"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="DWeather" id="PbM-mf-Qhh">
+                        <barButtonItem key="leftBarButtonItem" id="Yu4-Ht-toO">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gk6-FD-qnz">
+                                <rect key="frame" x="5" y="7" width="104" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="US"/>
@@ -179,10 +184,7 @@
                                     <action selector="toggleUnits:" destination="2" eventType="valueChanged" id="0Pl-BA-8kM"/>
                                 </connections>
                             </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="DWeather" id="PbM-mf-Qhh">
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="About" id="VPp-A7-ztg">
                             <connections>
                                 <action selector="aboutApp:" destination="2" id="jfb-zO-YSp"/>
