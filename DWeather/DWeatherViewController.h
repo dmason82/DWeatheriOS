@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 //NSString* const CITY_KEY = @"city";
 @class DWeatherWUEngine,DWeatherTableViewController;
-@interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NSURLConnectionDelegate>
+@interface DWeatherViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NSURLConnectionDelegate,CLLocationManagerDelegate>
 @property(nonatomic,strong)NSArray *weatherDays;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UITableView *weatherConditionsTable;
@@ -22,9 +23,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *unitsButton;
 @property(nonatomic,strong)NSUserDefaults* appDefaults;
 @property(nonatomic,retain)NSNumber* isMetric;
+@property(nonatomic,retain)CLLocationManager *manager;
+@property(nonatomic,retain)CLLocation* lastKnownLocation;
 @property(nonatomic,strong)DWeatherTableViewController* controller;
 -(IBAction)fetchWeather;
 - (IBAction)toggleUnits:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *locationSwitch;
+- (IBAction)toggleLocation:(id)sender;
 -(IBAction)aboutApp:(id)sender;
 -(void)obtainWeatherWithOperation;
 @end

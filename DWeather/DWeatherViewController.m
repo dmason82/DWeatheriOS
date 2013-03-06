@@ -37,6 +37,13 @@
     else{
         self.isMetric = @0;
     }
+    if([[_appDefaults objectForKey:@"currentLocation"] isEqualToString:@"Yes"]){
+        [self.locationSwitch setOn:YES];
+        [self toggleLocation:self.locationSwitch];
+    }
+    else{
+        [self.locationSwitch setOn:NO];
+    }
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setTintColor:[UIColor blueColor]];
     [refreshControl addTarget:_controller action:@selector(fetchWeather) forControlEvents:UIControlEventValueChanged];
@@ -53,6 +60,7 @@
     [self setLocationLabel:nil];
     [self setWeatherConditionsTable:nil];
     [self setUnitsSegment:nil];
+    [self setLocationSwitch:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -197,9 +205,9 @@
     return 1;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView:(UIPickerView *)pickerView{
-    return 1;
-}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView:(UIPickerView *)pickerView{
+//    return 1;
+//}
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if (component == 0) {
@@ -253,6 +261,22 @@
 
 
 #pragma mark - UIBarButtonItem responders
+- (IBAction)toggleLocation:(UISwitch*)sender {
+    NSLog(@"Location switch toggled");
+    if(sender.on ==YES){
+            self.manager = [[CLLocationManager alloc] init];
+            self.manager.delegate = self;
+            [self.manager startUpdatingLocation];
+            [_appDefaults setValue:@"Yes" forKey:@"currentLocation"];
+            [_appDefaults synchronize];
+            NSLog(@"Starting location manager");
+    }
+    else{
+        [_appDefaults setValue:@"No" forKey:@"currentLocation"];
+        [_appDefaults synchronize];
+    }
+}
+
 -(IBAction)aboutApp:(id)sender{
     [self performSegueWithIdentifier:@"aboutAppSegue" sender:self];
 }
@@ -311,6 +335,24 @@
     [self.weatherConditionsTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
-
-
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    self.lastKnownLocation = newLocation;
+    CLGeocoder* coder = [[CLGeocoder alloc] init];
+    [coder reverseGeocodeLocation:self.lastKnownLocation completionHandler:^(NSArray* placemarks,NSError* error)
+    {
+        if(placemarks.count > 0)
+        {
+            CLPlacemark* place = [placemarks objectAtIndex:0];
+            self.locationTextField.text = [NSString stringWithFormat:@"%@ %@",place.locality,place.administrativeArea];
+            [self fetchWeather];
+            
+        }
+        else{
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Location error!" message:@"I was unable to determine your location" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+            [alertView show];
+            
+        }
+    }];
+}
 @end

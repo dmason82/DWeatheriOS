@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="xXU-J1-Y4l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="xXU-J1-Y4l">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Weather View Controller - DWeather-->
@@ -131,7 +131,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="59I-eV-JFj">
-                                <rect key="frame" x="172" y="82" width="128" height="44"/>
+                                <rect key="frame" x="185" y="103" width="115" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Fetch Weather">
@@ -162,7 +162,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Please enter a location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wca-E9-Lep">
-                                <rect key="frame" x="20" y="15" width="180" height="21"/>
+                                <rect key="frame" x="70" y="20" width="180" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Len-eS-Sy7">
+                                <rect key="frame" x="20" y="105" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="toggleLocation:" destination="2" eventType="valueChanged" id="cSF-Ht-97M"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Use current location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ddH-aD-hW7">
+                                <rect key="frame" x="20" y="76" width="154" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -194,6 +208,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="locationLabel" destination="PQO-cn-qdM" id="hLf-Km-u5U"/>
+                        <outlet property="locationSwitch" destination="Len-eS-Sy7" id="IeH-4N-xgo"/>
                         <outlet property="locationTextField" destination="Eud-j2-ISu" id="qxU-Jl-nhq"/>
                         <outlet property="unitsSegment" destination="gk6-FD-qnz" id="guC-I5-Hg7"/>
                         <outlet property="weatherConditionsTable" destination="uba-hQ-vpu" id="Bm7-YI-81b"/>
@@ -796,80 +811,6 @@
         <image name="Icon@2x.png" width="114" height="114"/>
         <image name="wundergroundLogoIOS.jpg" width="225" height="135"/>
     </resources>
-    <classes>
-        <class className="DWeatherAboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherAboutViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goToWunderground:"/>
-                <relationship kind="outlet" name="appIconImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="appNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="appVersionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wundergroundImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="DWeatherCurrentDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherCurrentDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="currentCityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentConditionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentConditionsPicture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="currentFeelsLikeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentHumidityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentRainfallTodayLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentTemperatureLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentVisibilityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentWindGustsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="currentWindLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DWeatherCurrentWeatherCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherCurrentWeatherCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="conditionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="humidityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="iconView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="temperatureLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="windLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DWeatherForecastConditionsCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherForecastConditionsCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="conditionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dayOfWeekLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="forecastIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="highTempLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lowTempLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DWeatherForecastConditionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherForecastConditionsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="averageWindLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cityText" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="conditionsImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="conditionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="forecastAverageHumidityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="forecastHighLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="forecastLowLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="forecastPercipitationLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DWeatherViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DWeatherViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="aboutApp:"/>
-                <relationship kind="action" name="fetchWeather"/>
-                <relationship kind="action" name="toggleUnits:"/>
-                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="locationTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="unitsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="unitsSegment" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="weatherConditionsTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
