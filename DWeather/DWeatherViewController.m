@@ -272,6 +272,11 @@
             NSLog(@"Starting location manager");
     }
     else{
+        if(self.manager)
+        {
+            [self.manager stopUpdatingLocation];
+            
+        }
         [_appDefaults setValue:@"No" forKey:@"currentLocation"];
         [_appDefaults synchronize];
     }
