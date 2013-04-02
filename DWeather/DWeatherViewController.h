@@ -24,8 +24,10 @@
 @property(nonatomic,strong)NSUserDefaults* appDefaults;
 @property(nonatomic,retain)NSNumber* isMetric;
 @property(nonatomic,retain)CLLocationManager *manager;
+@property(nonatomic,retain)NSTimer *timer;
 @property(nonatomic,retain)CLLocation* lastKnownLocation;
 @property(nonatomic,strong)DWeatherTableViewController* controller;
+@property (weak, nonatomic) IBOutlet UILabel *enterLocationLabel;
 -(IBAction)fetchWeather;
 - (IBAction)toggleUnits:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *locationSwitch;

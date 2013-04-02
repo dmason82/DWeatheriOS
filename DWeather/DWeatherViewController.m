@@ -17,6 +17,7 @@
 #import "DWeatherTableViewController.h"
 @interface DWeatherViewController ()
 @property(nonatomic,retain)NSArray *autoComplete;
+-(void)updateLocationOnTimer:(NSTimer*)timer;
 @end
 
 @implementation DWeatherViewController
@@ -26,6 +27,8 @@
     [super viewDidLoad];
     _engine = [[DWeatherWUEngine alloc] init];
     _appDefaults = [NSUserDefaults standardUserDefaults];
+    self.manager = [[CLLocationManager alloc] init];
+    self.manager.delegate = self;
     [_locationTextField setDelegate:self];
     if ([_appDefaults objectForKey:@"savedLocation"]){
         [_locationTextField setText:[_appDefaults objectForKey:@"savedLocation"]];
@@ -40,6 +43,7 @@
     if([[_appDefaults objectForKey:@"currentLocation"] isEqualToString:@"Yes"]){
         [self.locationSwitch setOn:YES];
         [self toggleLocation:self.locationSwitch];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(updateLocationOnTimer:) userInfo:nil repeats:YES];
     }
     else{
         [self.locationSwitch setOn:NO];
@@ -61,6 +65,7 @@
     [self setWeatherConditionsTable:nil];
     [self setUnitsSegment:nil];
     [self setLocationSwitch:nil];
+    [self setEnterLocationLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -264,12 +269,11 @@
 - (IBAction)toggleLocation:(UISwitch*)sender {
     NSLog(@"Location switch toggled");
     if(sender.on ==YES){
-            self.manager = [[CLLocationManager alloc] init];
-            self.manager.delegate = self;
-            [self.manager startUpdatingLocation];
-            [_appDefaults setValue:@"Yes" forKey:@"currentLocation"];
-            [_appDefaults synchronize];
-            NSLog(@"Starting location manager");
+        [self.manager startUpdatingLocation];
+        [_appDefaults setValue:@"Yes" forKey:@"currentLocation"];
+        [_appDefaults synchronize];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(updateLocationOnTimer:) userInfo:nil repeats:YES];
+        NSLog(@"Starting location manager");
     }
     else{
         if(self.manager)
@@ -277,6 +281,7 @@
             [self.manager stopUpdatingLocation];
             
         }
+        [self.timer invalidate];
         [_appDefaults setValue:@"No" forKey:@"currentLocation"];
         [_appDefaults synchronize];
     }
@@ -344,10 +349,12 @@
 {
     self.lastKnownLocation = newLocation;
     CLGeocoder* coder = [[CLGeocoder alloc] init];
-    [coder reverseGeocodeLocation:self.lastKnownLocation completionHandler:^(NSArray* placemarks,NSError* error)
+
+    [coder reverseGeocodeLocation:newLocation completionHandler:^(NSArray* placemarks,NSError* error)
     {
         if(placemarks.count > 0)
         {
+            [manager stopUpdatingLocation];
             CLPlacemark* place = [placemarks objectAtIndex:0];
             self.locationTextField.text = [NSString stringWithFormat:@"%@ %@",place.locality,place.administrativeArea];
             [self fetchWeather];
@@ -356,8 +363,38 @@
         else{
             UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Location error!" message:@"I was unable to determine your location" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             [alertView show];
-            
+            [self.manager stopUpdatingLocation];
+            [self.locationSwitch setOn:NO];
         }
     }];
 }
+
+-(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    NSLog(@"Locations: %@",locations.description);
+    if (locations.count > 0) {
+        CLLocation* newLoc = [locations objectAtIndex:0];
+        CLGeocoder* coder = [[CLGeocoder alloc] init];
+        [manager stopUpdatingLocation];
+        [coder reverseGeocodeLocation:newLoc completionHandler:^(NSArray* placemarks,NSError* error)
+         {
+             if(placemarks.count > 0)
+             {
+                 CLPlacemark* place = [placemarks objectAtIndex:0];
+                 self.locationTextField.text = [NSString stringWithFormat:@"%@ %@",place.locality,place.administrativeArea];
+                 [self fetchWeather];
+                 
+             }
+             else{
+                 UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Location error!" message:@"I was unable to determine your location" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                 [alertView show];
+                 [self.manager stopUpdatingLocation];
+             }
+         }];
+    }
+}
+
+-(void)updateLocationOnTimer:(NSTimer *)timer{
+    [self.manager startUpdatingLocation];
+}
+
 @end
