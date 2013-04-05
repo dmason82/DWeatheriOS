@@ -21,6 +21,7 @@
 @property(nonatomic,weak)IBOutlet UITextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *unitsSegment;
 @property (weak, nonatomic) IBOutlet UIButton *unitsButton;
+@property (weak, nonatomic) IBOutlet UIButton *fetchButton;
 @property(nonatomic,strong)NSUserDefaults* appDefaults;
 @property(nonatomic,retain)NSNumber* isMetric;
 @property(nonatomic,retain)CLLocationManager *manager;

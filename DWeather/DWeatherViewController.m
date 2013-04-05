@@ -66,6 +66,7 @@
     [self setUnitsSegment:nil];
     [self setLocationSwitch:nil];
     [self setEnterLocationLabel:nil];
+    [self setFetchButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -272,6 +273,10 @@
         [self.manager startUpdatingLocation];
         [_appDefaults setValue:@"Yes" forKey:@"currentLocation"];
         [_appDefaults synchronize];
+        [_locationTextField setEnabled:NO];
+        [_locationTextField setHidden:YES];
+        [_enterLocationLabel setHidden:YES];
+        [_fetchButton setHidden:YES];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(updateLocationOnTimer:) userInfo:nil repeats:YES];
         NSLog(@"Starting location manager");
     }
@@ -279,6 +284,10 @@
         if(self.manager)
         {
             [self.manager stopUpdatingLocation];
+            [_locationTextField setEnabled:YES];
+            [_enterLocationLabel setHidden:NO];
+            [_fetchButton setHidden:NO];
+            [_locationTextField setHidden:NO];
             
         }
         [self.timer invalidate];

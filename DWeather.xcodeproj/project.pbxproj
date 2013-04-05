@@ -35,6 +35,7 @@
 		A8473B511686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */; };
 		A8473B541686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B531686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m */; };
 		A8473B551686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B531686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m */; };
+		A86F862516CCA19200B76586 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A86F862416CCA19200B76586 /* CoreLocation.framework */; };
 		A8A83D98169CB88D00EB6B42 /* DWeatherTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A83D97169CB88D00EB6B42 /* DWeatherTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherCurrentDetailsViewController.m; sourceTree = SOURCE_ROOT; };
 		A8473B521686B2A9001EE7EE /* DWeatherForecastConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherForecastConditionsViewController.h; sourceTree = SOURCE_ROOT; };
 		A8473B531686B2A9001EE7EE /* DWeatherForecastConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherForecastConditionsViewController.m; sourceTree = SOURCE_ROOT; };
+		A86F862416CCA19200B76586 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A8A83D96169CB88D00EB6B42 /* DWeatherTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherTableViewController.h; sourceTree = "<group>"; };
 		A8A83D97169CB88D00EB6B42 /* DWeatherTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A86F862516CCA19200B76586 /* CoreLocation.framework in Frameworks */,
 				A81C1A4E15FBDC1E00CBA4B6 /* UIKit.framework in Frameworks */,
 				A81C1A5015FBDC1E00CBA4B6 /* Foundation.framework in Frameworks */,
 				A81C1A5215FBDC1E00CBA4B6 /* CoreGraphics.framework in Frameworks */,
@@ -119,6 +122,7 @@
 		A81C1A3E15FBDC1E00CBA4B6 = {
 			isa = PBXGroup;
 			children = (
+				A86F862416CCA19200B76586 /* CoreLocation.framework */,
 				A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */,
 				A8473B4C1686A4A1001EE7EE /* Icon@2x.png */,
 				A8473B491686A49A001EE7EE /* Icon.png */,
@@ -257,7 +261,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DWeather;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Doug Mason";
 			};
 			buildConfigurationList = A81C1A4315FBDC1E00CBA4B6 /* Build configuration list for PBXProject "DWeather" */;
@@ -394,6 +398,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -423,6 +430,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";

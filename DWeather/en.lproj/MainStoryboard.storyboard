@@ -208,6 +208,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="enterLocationLabel" destination="Wca-E9-Lep" id="zfR-oC-4t8"/>
+                        <outlet property="fetchButton" destination="59I-eV-JFj" id="w8M-T2-nA2"/>
                         <outlet property="locationLabel" destination="PQO-cn-qdM" id="hLf-Km-u5U"/>
                         <outlet property="locationSwitch" destination="Len-eS-Sy7" id="IeH-4N-xgo"/>
                         <outlet property="locationTextField" destination="Eud-j2-ISu" id="qxU-Jl-nhq"/>
