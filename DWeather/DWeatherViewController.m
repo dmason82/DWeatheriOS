@@ -274,8 +274,7 @@
         [_appDefaults setValue:@"Yes" forKey:@"currentLocation"];
         [_appDefaults synchronize];
         [_locationTextField setEnabled:NO];
-        [_locationTextField setHidden:YES];
-        [_enterLocationLabel setHidden:YES];
+        [_locationTextField setBackgroundColor:[UIColor grayColor]];
         [_fetchButton setHidden:YES];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(updateLocationOnTimer:) userInfo:nil repeats:YES];
         NSLog(@"Starting location manager");
@@ -285,7 +284,7 @@
         {
             [self.manager stopUpdatingLocation];
             [_locationTextField setEnabled:YES];
-            [_enterLocationLabel setHidden:NO];
+            [_locationTextField setBackgroundColor:[UIColor whiteColor]];
             [_fetchButton setHidden:NO];
             [_locationTextField setHidden:NO];
             
