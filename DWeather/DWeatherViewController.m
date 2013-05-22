@@ -18,6 +18,7 @@
 @interface DWeatherViewController ()
 @property(nonatomic,retain)NSArray *autoComplete;
 -(void)updateLocationOnTimer:(NSTimer*)timer;
+-(void)dismissKeyboard:(id)sender;
 @end
 
 @implementation DWeatherViewController
@@ -56,6 +57,8 @@
     [self.controller setRefreshControl:refreshControl];
     [self.controller setController:self];
     [self checkConnectivity];
+    UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:recognizer];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -276,7 +279,7 @@
         [_locationTextField setEnabled:NO];
         [_locationTextField setBackgroundColor:[UIColor grayColor]];
         [_fetchButton setHidden:YES];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(updateLocationOnTimer:) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:6000 target:self selector:@selector(updateLocationOnTimer:) userInfo:nil repeats:YES];
         NSLog(@"Starting location manager");
     }
     else{
@@ -404,5 +407,7 @@
 -(void)updateLocationOnTimer:(NSTimer *)timer{
     [self.manager startUpdatingLocation];
 }
-
+-(void)dismissKeyboard:(id)sender{
+    [self.locationTextField resignFirstResponder];
+}
 @end
