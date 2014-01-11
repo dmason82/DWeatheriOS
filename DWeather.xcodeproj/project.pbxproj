@@ -29,6 +29,7 @@
 		A8392279160535350088E593 /* DWeatherCurrentWeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8392278160535350088E593 /* DWeatherCurrentWeatherCell.m */; };
 		A839227C160537C50088E593 /* DWeatherForecastConditionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */; };
 		A839227F1605A9550088E593 /* DWeatherCurrentConditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */; };
+		A845583618810B3D00F1F6B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A845583518810B3D00F1F6B4 /* QuartzCore.framework */; };
 		A8473B4A1686A49A001EE7EE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8473B491686A49A001EE7EE /* Icon.png */; };
 		A8473B4D1686A4A1001EE7EE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8473B4C1686A4A1001EE7EE /* Icon@2x.png */; };
 		A8473B501686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */; };
@@ -83,6 +84,7 @@
 		A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherForecastConditionsCell.m; sourceTree = "<group>"; };
 		A839227D1605A9540088E593 /* DWeatherCurrentConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentConditions.h; sourceTree = "<group>"; };
 		A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherCurrentConditions.m; sourceTree = "<group>"; };
+		A845583518810B3D00F1F6B4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A8473B491686A49A001EE7EE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		A8473B4C1686A4A1001EE7EE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		A8473B4E1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentDetailsViewController.h; sourceTree = SOURCE_ROOT; };
@@ -99,10 +101,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A845583618810B3D00F1F6B4 /* QuartzCore.framework in Frameworks */,
+				A81C1A5215FBDC1E00CBA4B6 /* CoreGraphics.framework in Frameworks */,
 				A86F862516CCA19200B76586 /* CoreLocation.framework in Frameworks */,
 				A81C1A4E15FBDC1E00CBA4B6 /* UIKit.framework in Frameworks */,
 				A81C1A5015FBDC1E00CBA4B6 /* Foundation.framework in Frameworks */,
-				A81C1A5215FBDC1E00CBA4B6 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +125,6 @@
 		A81C1A3E15FBDC1E00CBA4B6 = {
 			isa = PBXGroup;
 			children = (
-				A86F862416CCA19200B76586 /* CoreLocation.framework */,
 				A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */,
 				A8473B4C1686A4A1001EE7EE /* Icon@2x.png */,
 				A8473B491686A49A001EE7EE /* Icon.png */,
@@ -146,6 +148,8 @@
 		A81C1A4C15FBDC1E00CBA4B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A845583518810B3D00F1F6B4 /* QuartzCore.framework */,
+				A86F862416CCA19200B76586 /* CoreLocation.framework */,
 				A81C1A4D15FBDC1E00CBA4B6 /* UIKit.framework */,
 				A81C1A4F15FBDC1E00CBA4B6 /* Foundation.framework */,
 				A81C1A5115FBDC1E00CBA4B6 /* CoreGraphics.framework */,
@@ -261,7 +265,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DWeather;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Doug Mason";
 			};
 			buildConfigurationList = A81C1A4315FBDC1E00CBA4B6 /* Build configuration list for PBXProject "DWeather" */;
@@ -395,14 +399,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -415,9 +420,12 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
@@ -427,24 +435,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Doug MASON (C89VYQX99E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Doug MASON (C89VYQX99E)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0E91EDAF-2B98-42BA-A413-DC9EADEFF32C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -457,6 +468,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DWeather/DWeather-Prefix.pch";
 				INFOPLIST_FILE = "DWeather/DWeather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -468,6 +480,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DWeather/DWeather-Prefix.pch";
 				INFOPLIST_FILE = "DWeather/DWeather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

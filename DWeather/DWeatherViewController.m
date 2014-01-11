@@ -15,6 +15,8 @@
 #import "DWeatherCurrentDetailsViewController.h"
 #import "DWeatherForecastConditionsViewController.h"
 #import "DWeatherTableViewController.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/QuartzCore.h>
 @interface DWeatherViewController ()
 @property(nonatomic,retain)NSArray *autoComplete;
 -(void)updateLocationOnTimer:(NSTimer*)timer;
@@ -57,6 +59,9 @@
     [self.controller setRefreshControl:refreshControl];
     [self.controller setController:self];
     [self checkConnectivity];
+    _fetchButton.layer.borderWidth=1.0f;
+    _fetchButton.layer.borderColor=[[UIColor blackColor] CGColor];
+    
     UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:recognizer];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -147,7 +152,7 @@
         cell.iconView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:current.iconPath]]];
         cell.humidityLabel.text = current.humidityString;
         NSNumber* currentTemp = [self.isMetric isEqualToNumber:@0]?current.currentTemperatureF:current.currentTemperatureC;
-        cell.temperatureLabel.text = [[currentTemp stringValue] stringByAppendingFormat:@"°%@",([self.unitsButton isSelected]?@"C":@"F") ];
+        cell.temperatureLabel.text = [[currentTemp stringValue] stringByAppendingFormat:@"°%@",([self.isMetric isEqualToNumber:@1]?@"C":@"F") ];
         cell.conditionsLabel.text = current.conditionsString;
 //        cell.windLabel.text = current.windString;
         return cell;
