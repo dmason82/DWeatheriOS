@@ -30,6 +30,7 @@
 		A839227C160537C50088E593 /* DWeatherForecastConditionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A839227B160537C50088E593 /* DWeatherForecastConditionsCell.m */; };
 		A839227F1605A9550088E593 /* DWeatherCurrentConditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */; };
 		A845583618810B3D00F1F6B4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A845583518810B3D00F1F6B4 /* QuartzCore.framework */; };
+		A845583A188118D600F1F6B4 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = A8455839188118D600F1F6B4 /* Icon-120.png */; };
 		A8473B4A1686A49A001EE7EE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A8473B491686A49A001EE7EE /* Icon.png */; };
 		A8473B4D1686A4A1001EE7EE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8473B4C1686A4A1001EE7EE /* Icon@2x.png */; };
 		A8473B501686AD5E001EE7EE /* DWeatherCurrentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8473B4F1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.m */; };
@@ -85,6 +86,7 @@
 		A839227D1605A9540088E593 /* DWeatherCurrentConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentConditions.h; sourceTree = "<group>"; };
 		A839227E1605A9550088E593 /* DWeatherCurrentConditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWeatherCurrentConditions.m; sourceTree = "<group>"; };
 		A845583518810B3D00F1F6B4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A8455839188118D600F1F6B4 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		A8473B491686A49A001EE7EE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		A8473B4C1686A4A1001EE7EE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		A8473B4E1686AD5D001EE7EE /* DWeatherCurrentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWeatherCurrentDetailsViewController.h; sourceTree = SOURCE_ROOT; };
@@ -125,6 +127,7 @@
 		A81C1A3E15FBDC1E00CBA4B6 = {
 			isa = PBXGroup;
 			children = (
+				A8455839188118D600F1F6B4 /* Icon-120.png */,
 				A82369DA168A3E1700996D8E /* wundergroundLogoIOS.jpg */,
 				A8473B4C1686A4A1001EE7EE /* Icon@2x.png */,
 				A8473B491686A49A001EE7EE /* Icon.png */,
@@ -267,6 +270,11 @@
 				CLASSPREFIX = DWeather;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Doug Mason";
+				TargetAttributes = {
+					A81C1A4815FBDC1E00CBA4B6 = {
+						DevelopmentTeam = C89VYQX99E;
+					};
+				};
 			};
 			buildConfigurationList = A81C1A4315FBDC1E00CBA4B6 /* Build configuration list for PBXProject "DWeather" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -291,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A845583A188118D600F1F6B4 /* Icon-120.png in Resources */,
 				A81C1A5815FBDC1E00CBA4B6 /* InfoPlist.strings in Resources */,
 				A81C1A6115FBDC1E00CBA4B6 /* MainStoryboard.storyboard in Resources */,
 				A8392272160521980088E593 /* Default-568h@2x.png in Resources */,
@@ -465,11 +474,14 @@
 		A81C1A7D15FBDC1F00CBA4B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DWeather/DWeather-Prefix.pch";
 				INFOPLIST_FILE = "DWeather/DWeather-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -477,11 +489,14 @@
 		A81C1A7E15FBDC1F00CBA4B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DWeather/DWeather-Prefix.pch";
 				INFOPLIST_FILE = "DWeather/DWeather-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

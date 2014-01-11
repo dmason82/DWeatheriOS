@@ -59,9 +59,12 @@
     [self.controller setRefreshControl:refreshControl];
     [self.controller setController:self];
     [self checkConnectivity];
+    NSComparisonResult result = [@"7.0" compare:[[UIDevice currentDevice] systemVersion] ];
+    //If it is greater or equal to iOS 7, use a border.
+    if(result ==NSOrderedSame || result== NSOrderedAscending ){
     _fetchButton.layer.borderWidth=1.0f;
     _fetchButton.layer.borderColor=[[UIColor blackColor] CGColor];
-    
+    }
     UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:recognizer];
 	// Do any additional setup after loading the view, typically from a nib.
